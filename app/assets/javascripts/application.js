@@ -12,4 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require jquery-ui-1.8.23.custom.min.js
+//= require bootstrap.min.js
+//= require jquery.tagsinput.js
+//= require events.js
+

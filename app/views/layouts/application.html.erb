@@ -7,8 +7,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<div>
   <div class="container relativePosition">
     <% flash.each do |key, value| %>
       <div class="flash-container">
@@ -16,10 +14,11 @@
       </div>
     <% end %>
   </div>
-  <div class="main-content">
+
+  <div class="container">
     <%= yield %>
   </div>
-</div>
+  
 
 </body>
 </html>

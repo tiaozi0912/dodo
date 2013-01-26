@@ -1,6 +1,8 @@
 Dodo::Application.routes.draw do
-  resources :events
-
+  resources :events, :only => [:create,:update]
+  
+  root :to => 'events#home'
+  match '/events/:event_id/:token' => 'events#show'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

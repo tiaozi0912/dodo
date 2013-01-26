@@ -1,0 +1,45 @@
+.page 
+  = form_for(@event, :multipart => true, :html => {:method => 'put'}) do |f|
+
+    = f.text_field :name, :value => "#{@event.name}"
+    
+    -# the group input is tricky
+    %label#group-label Group:
+    %input{:name => "event[group]",:type => 'text',:id => 'event_group'}
+
+    %table.table.table-bordered
+      %thead
+        %tr
+          %td Expenses 
+          %td How Much ($)
+          %td Paid By
+          %td People Include
+      %tbody
+        %tr.table-row
+          %td
+            %input{:name => "event[expense_0]",:type => 'text',:id => 'event_expense_0'}
+          %td 
+            %input{:name => "event[cost_0]",:type => 'text',:id => 'event_expense_0'}
+          %td 
+            %input{:name => "event[paid_by_0]",:type => 'text',:id => 'event_paid_by_0'}
+          %td 
+            %input{:name => "event[people_included_0]",:type => 'text',:id => 'event_people_included_1'}
+
+    .btn.btn-primary.btn-add-row Add a row
+    %br
+    .pull-left 
+      .btn.btn-success.btn-save Save
+    .pull-right
+      .btn.btn-success.btn-calculate Calculate
+
+:javascript
+  $(document).ready(function(){
+    $('.btn-add-row').click(function(){
+      addRow();
+    })
+    var group = autoCompleteSource();
+    $('#event_group').tagsInput({
+      'autocomplete_url':group,
+      'defaultText':'add a person'
+    });
+  })
