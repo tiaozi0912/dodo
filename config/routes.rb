@@ -1,5 +1,6 @@
 Dodo::Application.routes.draw do
   resources :events, :only => [:create,:update]
+  resources :users, :only => :create
   
   root :to => 'events#home'
   match '/events/:event_id/:token' => 'events#show'

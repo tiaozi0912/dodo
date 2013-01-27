@@ -6,6 +6,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:event_id])
+    @group = @event.group
   end
 
   def create

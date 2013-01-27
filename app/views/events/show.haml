@@ -6,6 +6,8 @@
     -# the group input is tricky
     %label#group-label Group:
     %input{:name => "event[group]",:type => 'text',:id => 'event_group'}
+    -# TODO: should be automatically add with ajax
+    .btn.btn-primary.btn-add-people add those people
 
     %table.table.table-bordered
       %thead
@@ -23,7 +25,7 @@
           %td 
             %input{:name => "event[paid_by_0]",:type => 'text',:id => 'event_paid_by_0'}
           %td 
-            %input{:name => "event[people_included_0]",:type => 'text',:id => 'event_people_included_1'}
+            %input.people-included{:name => "event[people_included_0]",:type => 'text',:id => 'event_people_included_1',:value => 'All'}
 
     .btn.btn-primary.btn-add-row Add a row
     %br
@@ -32,14 +34,4 @@
     .pull-right
       .btn.btn-success.btn-calculate Calculate
 
-:javascript
-  $(document).ready(function(){
-    $('.btn-add-row').click(function(){
-      addRow();
-    })
-    var group = autoCompleteSource();
-    $('#event_group').tagsInput({
-      'autocomplete_url':group,
-      'defaultText':'add a person'
-    });
-  })
+= render :partial => 'js'

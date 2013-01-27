@@ -1,3 +1,9 @@
 LOG:  database system was shut down at 2013-01-26 02:00:33 PST
 LOG:  database system is ready to accept connections
 LOG:  autovacuum launcher started
+ERROR:  column expenses_users.expense_id does not exist at character 86
+STATEMENT:  SELECT "expenses".* FROM "expenses" INNER JOIN "expenses_users" ON "expenses"."id" = "expenses_users"."expense_id" WHERE "expenses_users"."user_id" = 5
+ERROR:  column expenses_users.expense_id does not exist at character 86
+STATEMENT:  SELECT "expenses".* FROM "expenses" INNER JOIN "expenses_users" ON "expenses"."id" = "expenses_users"."expense_id" WHERE "expenses_users"."user_id" = 5
+ERROR:  column expenses_users.expense_id does not exist at character 86
+STATEMENT:  SELECT "expenses".* FROM "expenses" INNER JOIN "expenses_users" ON "expenses"."id" = "expenses_users"."expense_id" WHERE "expenses_users"."user_id" = 5

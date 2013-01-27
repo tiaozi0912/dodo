@@ -1,0 +1,33 @@
+:javascript
+  $(document).ready(function(){
+    var group = #{@group};
+    var event_id = #{@event.id};
+    loadGroup(group);
+    
+    //Add row to the table
+    $('.btn-add-row').click(function(){
+      addRow();
+    })
+    
+    //Add people to the group
+    $('#event_group').tagsInput({
+      'defaultText':'add a person'
+    });
+    
+    $('.btn-add-people').click(function(){
+      //update the group of people
+      group = addPeopleToEvent(group,event_id);
+    })
+
+    //specify the people for the expense
+    //TODO: only enable people to select from suggestion
+    $('body').on('click','.people-included',function(){
+      pickIncludedPeople($(this),group);      
+    })
+
+    //save the TABLE data
+    $('.btn-save').click(function(){
+      saveForm();
+    })
+    
+  })

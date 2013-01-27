@@ -9,6 +9,11 @@ class Event < ActiveRecord::Base
     count = 15
     token[0..count]
   end
+
+  # get the array containing the names of the people in the group
+  def group
+    users.empty? ? [] : users.map(&:username)
+  end
   
   private
 

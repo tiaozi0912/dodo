@@ -1,20 +1,37 @@
+var FormValidation = function(){
+  this.eventNameValidated = function(name){
+    var flag = ( name.length > 1 );
+    //TODO: if flag false, error message
+    if(!flag) alert("Event name can't be empty.");
+    return flag;
+  }
+  this.costValidated = function($selecor,amount){
+    return isNumber(amount);
+  }
+}
+
+function isNumber(n){
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+var fv = new FormValidation();
+
 function createEvent(){
-	if(eventNameValidated()){
+  var name = $('#event_name').val();
+	if(fv.eventNameValidated(name)){
 	  $('form').submit();
 	}
 }
 
-function eventNameValidated(){
-  var name = $('#event_name').val();
-  var flag = ( name.length > 1 );
-  // if flag false, error message
-  if(!flag) alert("Event name can't be empty.");
-  return flag;
+function loadGroup(names){
+  var v = names.join(',');
+  $('#event_group').val(v);
 }
 
 var cols = ['expense','cost','paid_by','people_included'];
 function addRow(){
-  var td,tr,count;
+  var td,tr,count,group;
+  group = $('.tag span').getNames();
   count = $('.table-row').length;
   for(i=0;i<cols.length;i++){
     td += "<td><input id='event_" + cols[i] + '_' + count
@@ -23,9 +40,67 @@ function addRow(){
   }
   tr = "<tr class='table-row'>" + td + "</tr>";
   $('tbody').append(tr);
+  var $lastTd = $('.table-row:last td input:last');
+  $lastTd.val('All');
+  $lastTd.addClass('people-included');
 }
 
-var group = ['Yujun Wu','Dodo','Yuki','John'];
-function autoCompleteSource(){
+//exist people will be dynamically changed when calling ajax to add people
+function addPeopleToEvent(existNames,event_id){
+  var names = $('#event_group_tagsinput .tag span').getNames();
+  var newNames = getNewNames(existNames,names);
+  //ajax call if newNames is not empty
+  if(newNames.length > 0){
+    var url = '/users';
+    var data = {'event_id':event_id,'user_names':newNames};
+    $.post(url,data,function(response){
+      //console.log(response['usernames']);
+    },"json");
+  }
+  return names;
+}
+
+$.fn.getNames = function(){
+  var names = [];
+  this.each(function(){
+    var name = $(this).html().replace(/&nbsp;&nbsp;/,'');
+    names.push(name);
+  })
+  return names;
+}
+
+function getNewNames(existNames,names){
+  var hashTable = {};
+  var newNames = [];
+  for(i=0;i<existNames.length;i++) hashTable[existNames[i]] = 0;
+  for(j=0;j<names.length;j++){
+    if(!hashTable.hasOwnProperty(names[j])) newNames.push(names[j]);
+  }
+  return newNames;
+}
+
+function autoCompleteSource(group){
   return group;
 }
+
+//TODO: only enable people to select from suggestion
+function pickIncludedPeople($selector,group){
+  $selector.val('');
+  $selector.tagsInput({
+    'autocomplete_url': group,
+    'defaultText':'add a person'
+  })
+}
+
+function saveForm(){
+  var costIsNumber = true;
+  $('td input[id*=event_expense_]').each(function(){
+    var amount = $(this).val();
+    if(!fv.costValidated($(this),amount)) costIsNumber = false;
+  })
+  if(costIsNumber){
+    $('form').submit();
+  }
+}
+
+
