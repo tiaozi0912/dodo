@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :event_id, :expense_id, :username
   has_and_belongs_to_many :events
-  has_and_belongs_to_many :expenses
-
+  has_many :expenses, :dependent => :destroy
+  has_many :participants, :dependent => :destroy
 end

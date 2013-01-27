@@ -3,6 +3,7 @@
     var group = #{@group};
     var event_id = #{@event.id};
     loadGroup(group);
+    preprocessTable();
     
     //Add row to the table
     $('.btn-add-row').click(function(){
@@ -21,7 +22,7 @@
 
     //specify the people for the expense
     //TODO: only enable people to select from suggestion
-    $('body').on('click','.people-included',function(){
+    $('body').on('click','.participant',function(){
       pickIncludedPeople($(this),group);      
     })
 

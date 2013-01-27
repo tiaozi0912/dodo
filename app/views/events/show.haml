@@ -17,15 +17,27 @@
           %td Paid By
           %td People Include
       %tbody
-        %tr.table-row
+        - if !@expenses.empty?
+          - for i in 0..@expenses.size - 1
+            - @ep_id = @expenses[i].id
+            %tr.table-row
+              %td
+                = text_input("#{ep_id}",'name')
+              %td 
+                = text_input("#{ep_id}",'cost')
+              %td 
+                = text_input("#{ep_id}",'user')
+              %td 
+                = text_input("#{ep_id}",'participant')
+        %tr.table-row.table-row-new
           %td
-            %input{:name => "event[expense_0]",:type => 'text',:id => 'event_expense_0'}
+            = text_input("0",'name')
           %td 
-            %input{:name => "event[cost_0]",:type => 'text',:id => 'event_expense_0'}
+            = text_input("0",'cost')
           %td 
-            %input{:name => "event[paid_by_0]",:type => 'text',:id => 'event_paid_by_0'}
+            = text_input("0",'user')
           %td 
-            %input.people-included{:name => "event[people_included_0]",:type => 'text',:id => 'event_people_included_1',:value => 'All'}
+            = text_input("0",'participant','All')
 
     .btn.btn-primary.btn-add-row Add a row
     %br

@@ -28,21 +28,21 @@ function loadGroup(names){
   $('#event_group').val(v);
 }
 
-var cols = ['expense','cost','paid_by','people_included'];
+var cols = ['name','cost','user','participant'];
 function addRow(){
   var td,tr,count,group;
   group = $('.tag span').getNames();
-  count = $('.table-row').length;
+  count = $('.table-row-new').length;
   for(i=0;i<cols.length;i++){
-    td += "<td><input id='event_" + cols[i] + '_' + count
-                    + "' name='event[" +  cols[i] + '_' + count
+    td += "<td><input id='event_expense_" + count + "_" + cols[i]
+                    + "' name='event[expense][" + count + '][' + cols[i] 
                     + "]' type='text'></td>";
   }
-  tr = "<tr class='table-row'>" + td + "</tr>";
+  tr = "<tr class='table-row table-row-new'>" + td + "</tr>";
   $('tbody').append(tr);
   var $lastTd = $('.table-row:last td input:last');
   $lastTd.val('All');
-  $lastTd.addClass('people-included');
+  $lastTd.addClass('participant');
 }
 
 //exist people will be dynamically changed when calling ajax to add people
@@ -101,6 +101,10 @@ function saveForm(){
   if(costIsNumber){
     $('form').submit();
   }
+}
+
+function preprocessTable(){
+  $('.table-row-new input:last').addClass('participant');
 }
 
 
