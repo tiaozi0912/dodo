@@ -1,17 +1,21 @@
 var FormValidation = function(){
   this.eventNameValidated = function(name){
-    var flag = ( name.length > 1 );
+    var flag = isEmpty(name);
     //TODO: if flag false, error message
     if(!flag) alert("Event name can't be empty.");
     return flag;
   }
   this.costValidated = function($selecor,amount){
+    if(!isNumber(amount)) alert('Please enter number in the cost.');
     return isNumber(amount);
   }
 }
 
 function isNumber(n){
   return !isNaN(parseFloat(n)) && isFinite(n);
+}
+function isEmpty(str){
+  return str.length > 0;
 }
 
 var fv = new FormValidation();
@@ -32,7 +36,7 @@ var cols = ['name','cost','user','participant'];
 function addRow(){
   var td,tr,count,group;
   group = $('.tag span').getNames();
-  count = $('.table-row-new').length;
+  count = - $('.table-row-new').length;
   for(i=0;i<cols.length;i++){
     td += "<td><input id='event_expense_" + count + "_" + cols[i]
                     + "' name='event[expense][" + count + '][' + cols[i] 
@@ -40,9 +44,10 @@ function addRow(){
   }
   tr = "<tr class='table-row table-row-new'>" + td + "</tr>";
   $('tbody').append(tr);
-  var $lastTd = $('.table-row:last td input:last');
+  var $lastTd = $('.table-row-new:last td input:last');
   $lastTd.val('All');
   $lastTd.addClass('participant');
+  $('.table-row-new:last td input[id*=user]').addClass('payer');
 }
 
 //exist people will be dynamically changed when calling ajax to add people
@@ -94,7 +99,7 @@ function pickIncludedPeople($selector,group){
 
 function saveForm(){
   var costIsNumber = true;
-  $('td input[id*=event_expense_]').each(function(){
+  $('.table-row-new td input[id*=cost]').each(function(){
     var amount = $(this).val();
     if(!fv.costValidated($(this),amount)) costIsNumber = false;
   })
@@ -105,6 +110,7 @@ function saveForm(){
 
 function preprocessTable(){
   $('.table-row-new input:last').addClass('participant');
+  $('.table-row-new input[id*=user]').addClass('payer');
 }
 
 

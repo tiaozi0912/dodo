@@ -26,6 +26,11 @@
       pickIncludedPeople($(this),group);      
     })
 
+    //specify the person who paid
+    $('body').on('click','.payer',function(){
+      pickIncludedPeople($(this),group);      
+    })
+
     //save the TABLE data
     $('.btn-save').click(function(){
       saveForm();

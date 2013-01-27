@@ -14,6 +14,25 @@ class Event < ActiveRecord::Base
   def group
     users.empty? ? [] : users.map(&:username)
   end
+
+  # e.x. params = {"name"=>"Hot Pot", "cost"=>"100.94", "user"=>"Yujun Wu", "participant"=>"All"}
+  def get_expense_attr params
+      exp_attr = Hash[:name => params['name'],:cost => params['cost'].to_f]
+      # username is not unique but username in the same event is unique
+      p_user = users.where("username = ?",params['user'])[0]
+      puts p_user
+      exp_attr[:user_id] = p_user.id
+      return exp_attr
+  end
+
+  def build_expense params
+    exp_attr = get_expense_attr params
+    exp = expenses.create(exp_attr)
+    exp.build_participant params['participant']
+  end
+
+  def update_expense params
+  end
   
   private
 
@@ -24,5 +43,7 @@ class Event < ActiveRecord::Base
 	def self.secure_hash(string)
 	  Digest::SHA2.hexdigest(string)
 	end
+
+
 
 end

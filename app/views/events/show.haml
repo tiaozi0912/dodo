@@ -19,23 +19,23 @@
       %tbody
         - if !@expenses.empty?
           - for i in 0..@expenses.size - 1
-            - @ep_id = @expenses[i].id
+            - @ep = @expenses[i]
             %tr.table-row
               %td
-                = text_input("#{ep_id}",'name')
+                = text_input("#{@ep.id}",'name',"#{@ep.name}")
               %td 
-                = text_input("#{ep_id}",'cost')
+                = text_input("#{@ep.id}",'cost',"#{@ep.cost}")
               %td 
-                = text_input("#{ep_id}",'user')
+                = text_input("#{@ep.id}",'user',"#{@ep.user.username}")
               %td 
-                = text_input("#{ep_id}",'participant')
+                = text_input("#{@ep.id}",'participant','All') # Hardcode all for now
         %tr.table-row.table-row-new
           %td
-            = text_input("0",'name')
+            = text_input("0",'name','')
           %td 
-            = text_input("0",'cost')
+            = text_input("0",'cost','')
           %td 
-            = text_input("0",'user')
+            = text_input("0",'user','')
           %td 
             = text_input("0",'participant','All')
 

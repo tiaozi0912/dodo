@@ -14,9 +14,17 @@ class EventsController < ApplicationController
     token = Event.token
     params[:event][:url] = token
     @event = Event.create(params[:event])
-    redirect_to "/events/#{@event.id.to_s}/#{token}"
+    redirect_to "/events/#{@event.id}/#{token}"
   end
 
   def update
+    expenses = params[:event][:expense]
+    event = Event.find(params[:id])
+    if !expenses.empty?
+      expenses.each do |k,v|
+        k.to_i <= 0 ? event.build_expense(v) : event.update_expense(v)
+      end
+    end
+    redirect_to "/events/#{event.id}/#{event.url}"
   end
 end
