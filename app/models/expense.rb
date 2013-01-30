@@ -13,7 +13,7 @@ class Expense < ActiveRecord::Base
   # return string "Yujun Wu,Dodo"
   def participants_to_s 
     names_arr = Array.new
-    participants.each {|p| names_arr.push p.user.username}
+    participants.where('flag = true').each {|p| names_arr.push p.user.username}
     return ((event.users.map(&:username) - names_arr).empty? ? "All" : names_arr.join(','))
   end
 

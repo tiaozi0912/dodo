@@ -1,3 +1,5 @@
 LOG:  database system was shut down at 2013-01-28 01:40:05 PST
 LOG:  database system is ready to accept connections
 LOG:  autovacuum launcher started
+ERROR:  column "food" does not exist at character 52
+STATEMENT:  SELECT "expenses".* FROM "expenses"  WHERE (name = Food)
