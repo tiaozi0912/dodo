@@ -6,6 +6,7 @@
           %td People
           %td Spent
           %td Paid 
+          %td Balance
           - for i in 0..(@users.size-1)
             %td Pay to #{@users[i].username}
       %tbody
@@ -15,5 +16,6 @@
             %td #{@user.username}
             %td #{@user.spent}
             %td #{@user.paid}
+            %td #{@user.paid-@user.spent}
             - for i in 0..(@users.size-1)
               %td 0

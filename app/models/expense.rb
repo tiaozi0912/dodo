@@ -25,15 +25,20 @@ class Expense < ActiveRecord::Base
     real_participants.map(&:user_id)
   end
 
-  def spent_per_person
+  def spent_per_person cash_flow
     p_ids = real_participants_ids
     count = p_ids.size
     cost_per_persoon = cost / count
     p_ids.each do |i|
       user = User.find(i)
-      spent = user.spent + cost_per_persoon
-      user.update_attributes(:spent => spent)
+      cash_flow[user.id][:spent] += cost_per_persoon
     end
+    return cash_flow
+  end
+
+  def paid_per_person cash_flow
+    cash_flow[user.id][:paid] += cost
+    return cash_flow
   end
 
 end

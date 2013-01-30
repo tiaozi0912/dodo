@@ -12,9 +12,13 @@
       var checkboxes = '';
       for(j=0;j<col;j++){
         var k = j + row * settings.perRow; 
-        checkboxes += "<label class='span4 checkbox'><input type='checkbox' id='" + source[k] + "'>" + source[k] + "</label>"
+        checkboxes += "<label class='span4 checkbox'><input type='checkbox' id='" + str_safe(source[k]) + "'>" + source[k] + "</label>"
       }
       $('.tag-picker').find('.row-fluid:last').append(checkboxes);
+    }
+
+    function str_safe(str){
+      return str.replace(/[\s]+/,'_');
     }
 
     $.fn.attachPicker = function(){
@@ -37,10 +41,27 @@
       $('.tag-picker').css('top',1.3 * $selector.outerHeight());
     };
 
+    $.fn.preChecked = function(){
+      var $selector = this;
+      var val = $selector.val();
+      if(val == "All"){
+        $('.tag-picker input').prop('checked',true);
+      }else if(val != ''){
+        var names = val.split(',');
+        console.log(names);
+        for(i=0;i<names.length;i++){
+          var s = ".tag-picker #"+str_safe(names[i])+"";
+          $(s).prop('checked',true);
+        }
+      }
+      //disable the text input
+      $selector.prop('disabled',true);
+    }
+
     if($('.tag-picker').length == 0){ 
       $input = this;
       $input.attachPicker(); 
-      $input.prop('disabled',true);
+      $input.preChecked();
     }
 
   }

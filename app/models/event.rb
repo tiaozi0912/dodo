@@ -1,6 +1,5 @@
 class Event < ActiveRecord::Base
   attr_accessible :name, :url
-
   has_and_belongs_to_many :users
   has_many :expenses, :dependent => :destroy
 
@@ -44,17 +43,17 @@ class Event < ActiveRecord::Base
 
   def calculate
     # calculate the money spent for each person and the money paid for each person
+    cash_flow = init_cash_flow
     expenses.each do |exp|
-      exp.user.update_attributes(:paid => exp.cost)
-      exp.spent_per_person
-    end
-    print_results
+      cash_flow = exp.paid_per_person cash_flow
+      cash_flow = exp.spent_per_person cash_flow
+    end   
+    cash_flow.each {|id,v| User.find(id).update_attributes(:paid => v[:paid],:spent => v[:spent])}
   end
 
-  def print_results
-    
-  end
+  def clear
 
+  end
 
   
   private
@@ -67,6 +66,10 @@ class Event < ActiveRecord::Base
 	  Digest::SHA2.hexdigest(string)
 	end
 
-
+  def init_cash_flow
+    cf = Hash.new
+    users.each {|user| cf[user.id] = Hash[:spent => 0.0, :paid => 0.0]}
+    return cf
+  end
 
 end

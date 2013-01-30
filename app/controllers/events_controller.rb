@@ -32,6 +32,7 @@ class EventsController < ApplicationController
   def calculate
     cookies.signed[:results] = true
     event = Event.find(params[:event_id])
+    event.calculate
     redirect_to "/events/#{event.id}/#{event.url}"
   end
 end

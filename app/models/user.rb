@@ -21,4 +21,8 @@ class User < ActiveRecord::Base
     return user_ids
   end
 
+  def balance
+    paid - spent
+  end
+
 end
