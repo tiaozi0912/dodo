@@ -1,15 +1,3 @@
-LOG:  database system was shut down at 2013-01-26 02:00:33 PST
+LOG:  database system was shut down at 2013-01-28 01:40:05 PST
 LOG:  database system is ready to accept connections
 LOG:  autovacuum launcher started
-ERROR:  column expenses_users.expense_id does not exist at character 86
-STATEMENT:  SELECT "expenses".* FROM "expenses" INNER JOIN "expenses_users" ON "expenses"."id" = "expenses_users"."expense_id" WHERE "expenses_users"."user_id" = 5
-ERROR:  column expenses_users.expense_id does not exist at character 86
-STATEMENT:  SELECT "expenses".* FROM "expenses" INNER JOIN "expenses_users" ON "expenses"."id" = "expenses_users"."expense_id" WHERE "expenses_users"."user_id" = 5
-ERROR:  column expenses_users.expense_id does not exist at character 86
-STATEMENT:  SELECT "expenses".* FROM "expenses" INNER JOIN "expenses_users" ON "expenses"."id" = "expenses_users"."expense_id" WHERE "expenses_users"."user_id" = 5
-ERROR:  column "expense_id" of relation "users" does not exist
-STATEMENT:  ALTER TABLE "users" DROP "expense_id"
-ERROR:  syntax error at or near ")" at character 152
-STATEMENT:  SELECT "users".* FROM "users" INNER JOIN "events_users" ON "users"."id" = "events_users"."user_id" WHERE "events_users"."event_id" = 1 AND (username = )
-ERROR:  relation "expenses_users" does not exist at character 42
-STATEMENT:  SELECT "users".* FROM "users" INNER JOIN "expenses_users" ON "users"."id" = "expenses_users"."user_id" WHERE "expenses_users"."expense_id" = 1

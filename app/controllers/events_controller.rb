@@ -22,7 +22,7 @@ class EventsController < ApplicationController
     event = Event.find(params[:id])
     if !expenses.empty?
       expenses.each do |k,v|
-        k.to_i <= 0 ? event.build_expense(v) : event.update_expense(v)
+        k.to_i <= 0 ? event.build_expense(k,v) : event.update_expense(k,v)
       end
     end
     redirect_to "/events/#{event.id}/#{event.url}"

@@ -3,24 +3,18 @@ class Expense < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :event
-  has_many :participants
+  has_many :participants, :dependent => :destroy
  
   # default_scope :order => 'expenses.created_at DESC'
-  
-  # params = 'All' or 'Yujun Wu,Dodo'
-  def build_participant params
-  	if params == 'All'
-  		user_ids = event.users.map(&:id)
-  		user_ids.each{|user_id| Participant.create(:user_id => user_id,:expense_id => id)}
-  	else
-        usernames = params.split(',')
-        usernames.each do |username|
-        	# username is not unique but username in the same event is unique
-          p_user = event.users.where("username = ?",username)[0]
-          Participant.create(:user_id => p_user.id,:expense => id)
-        end
-  	end
+  def find_participant_by_user_id user_id
+    participants.where('user_id = ?',user_id)[0]
   end
-
+  
+  # return string "Yujun Wu,Dodo"
+  def participants_to_s 
+    names_arr = Array.new
+    participants.each {|p| names_arr.push p.user.username}
+    return ((event.users.map(&:username) - names_arr).empty? ? "All" : names_arr.join(','))
+  end
 
 end

@@ -15,5 +15,7 @@
 //= require jquery-ui-1.8.23.custom.min.js
 //= require bootstrap.min.js
 //= require jquery.tagsinput.js
+//= require tag-picker.js
 //= require events.js
+
 

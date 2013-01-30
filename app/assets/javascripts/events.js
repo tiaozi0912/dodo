@@ -40,14 +40,12 @@ function addRow(){
   for(i=0;i<cols.length;i++){
     td += "<td><input id='event_expense_" + count + "_" + cols[i]
                     + "' name='event[expense][" + count + '][' + cols[i] 
-                    + "]' type='text'></td>";
+                    + "]' type='text' class='" + cols[i] + "'></td>";
   }
   tr = "<tr class='table-row table-row-new'>" + td + "</tr>";
   $('tbody').append(tr);
   var $lastTd = $('.table-row-new:last td input:last');
   $lastTd.val('All');
-  $lastTd.addClass('participant');
-  $('.table-row-new:last td input[id*=user]').addClass('payer');
 }
 
 //exist people will be dynamically changed when calling ajax to add people
@@ -88,13 +86,9 @@ function autoCompleteSource(group){
   return group;
 }
 
-//TODO: only enable people to select from suggestion
-function pickIncludedPeople($selector,group){
+function selectParticipants($selector,group){
   $selector.val('');
-  $selector.tagsInput({
-    'autocomplete_url': group,
-    'defaultText':'add a person'
-  })
+  $selector.tagPicker(group);
 }
 
 function saveForm(){

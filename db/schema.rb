@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130127012521) do
+ActiveRecord::Schema.define(:version => 20130130003217) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20130127012521) do
   create_table "participants", :force => true do |t|
     t.integer "expense_id"
     t.integer "user_id"
+    t.boolean "flag",       :default => false
   end
 
   add_index "participants", ["expense_id"], :name => "index_participants_on_expense_id"

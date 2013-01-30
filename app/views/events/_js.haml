@@ -21,14 +21,15 @@
     })
 
     //specify the people for the expense
-    //TODO: only enable people to select from suggestion
     $('body').on('click','.participant',function(){
-      pickIncludedPeople($(this),group);      
-    })
+      $(this).val('');
+      $(this).tagPicker(group);
+    });
 
     //specify the person who paid
     $('body').on('click','.payer',function(){
-      pickIncludedPeople($(this),group);      
+      $(this).val('');
+      $(this).tagPicker(group);      
     })
 
     //save the TABLE data
