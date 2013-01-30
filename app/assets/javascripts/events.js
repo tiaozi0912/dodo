@@ -107,4 +107,11 @@ function preprocessTable(){
   $('.table-row-new input[id*=user]').addClass('payer');
 }
 
+var dodoIs = function(){
+  var arr = ["smart?","ben ben de!","sexyyyyy!","so cute???","cute!!!!!","sha hu hu","pretty!!","dump~","dudududu!","zhu zhu!"];
+  var i = parseInt(Math.random() * arr.length);
+  i = (i == arr.length ? i - 1 : i);
+  return "Dodo is " + arr[i];
+}
+
 
