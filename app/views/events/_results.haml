@@ -1,0 +1,19 @@
+- if cookies.signed[:results]
+  %section.results
+    %table.table.table-striped
+      %thead
+        %tr
+          %td People
+          %td Spent
+          %td Paid 
+          - for i in 0..(@users.size-1)
+            %td Pay to #{@users[i].username}
+      %tbody
+        - for j in 0..(@users.size-1)
+          - @user = @users[j]
+          %tr 
+            %td #{@user.username}
+            %td #{@user.spent}
+            %td #{@user.paid}
+            - for i in 0..(@users.size-1)
+              %td 0

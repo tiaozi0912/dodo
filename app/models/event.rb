@@ -41,6 +41,21 @@ class Event < ActiveRecord::Base
       Participant.update_with_user_ids user_ids,exp
     end
   end
+
+  def calculate
+    # calculate the money spent for each person and the money paid for each person
+    expenses.each do |exp|
+      exp.user.update_attributes(:paid => exp.cost)
+      exp.spent_per_person
+    end
+    print_results
+  end
+
+  def print_results
+    
+  end
+
+
   
   private
 

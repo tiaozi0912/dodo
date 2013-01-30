@@ -9,7 +9,7 @@ class Participant < ActiveRecord::Base
   end
 
   def self.update_with_user_ids user_ids,exp
-    stored_ids = exp.participants.where('flag = true').map(&:user_id)
+    stored_ids = exp.real_participants_ids
     u = find_need_update_ids stored_ids,user_ids
     u[:false].each{|i| set_flag false,i,exp}
     u[:true].each{|i| set_flag true,i,exp}

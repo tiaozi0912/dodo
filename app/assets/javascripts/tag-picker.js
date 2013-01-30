@@ -36,33 +36,39 @@
       $selector.parent().css('position','relative');
       $('.tag-picker').css('top',1.3 * $selector.outerHeight());
     };
-     
-    $input = this;
 
     if($('.tag-picker').length == 0){ 
+      $input = this;
       $input.attachPicker(); 
+      $input.prop('disabled',true);
     }
+
   }
 
   $(document).ready(function(){
     $('body').on('click','.tag-picker .close-picker',function(){
-      $('.tag-picker').remove();
+      dismissTagPicker();
     })
     
     $('body').on('click','.tag-picker #btn-done', function(){
       var tags = getTags();
-      $('.tag-picker').remove();
-      console.log('output is:' + tags);
+      dismissTagPicker();
       $input.val(tags);     
     });
-
-    function getTags(){
-      var t = [];
-      $('.tag-picker input').each(function(){
-        if($(this).is(':checked')) t.push($(this).attr('id'));
-      })
-      return t.join(',');
-    }
   });
+
+  function getTags(){
+    var t = [];
+    $('.tag-picker input').each(function(){
+      if($(this).is(':checked')) t.push($(this).attr('id'));
+    });
+    return t.join(',');
+  }
+
+  function dismissTagPicker(){
+    $('.tag-picker').remove();
+    $input.prop('disabled',false);
+  }
+
 })(jQuery);
 

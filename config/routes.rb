@@ -4,6 +4,7 @@ Dodo::Application.routes.draw do
   
   root :to => 'events#home'
   match '/events/:event_id/:token' => 'events#show'
+  match '/calculate/events/:event_id' => 'events#calculate'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

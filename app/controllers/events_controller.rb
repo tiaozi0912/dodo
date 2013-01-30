@@ -8,6 +8,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:event_id])
     @group = @event.group
     @expenses = @event.expenses
+    @users = @event.users
   end
 
   def create
@@ -25,6 +26,12 @@ class EventsController < ApplicationController
         k.to_i <= 0 ? event.build_expense(k,v) : event.update_expense(k,v)
       end
     end
+    redirect_to "/events/#{event.id}/#{event.url}"
+  end
+
+  def calculate
+    cookies.signed[:results] = true
+    event = Event.find(params[:event_id])
     redirect_to "/events/#{event.id}/#{event.url}"
   end
 end

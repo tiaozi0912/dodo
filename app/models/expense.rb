@@ -13,8 +13,27 @@ class Expense < ActiveRecord::Base
   # return string "Yujun Wu,Dodo"
   def participants_to_s 
     names_arr = Array.new
-    participants.where('flag = true').each {|p| names_arr.push p.user.username}
+    real_participants.each {|p| names_arr.push p.user.username}
     return ((event.users.map(&:username) - names_arr).empty? ? "All" : names_arr.join(','))
+  end
+
+  def real_participants
+    participants.where('flag = true')
+  end
+
+  def real_participants_ids
+    real_participants.map(&:user_id)
+  end
+
+  def spent_per_person
+    p_ids = real_participants_ids
+    count = p_ids.size
+    cost_per_persoon = cost / count
+    p_ids.each do |i|
+      user = User.find(i)
+      spent = user.spent + cost_per_persoon
+      user.update_attributes(:spent => spent)
+    end
   end
 
 end
