@@ -16,13 +16,25 @@ class User < ActiveRecord::Base
         user_ids.push user_id
       end
   	end
-    puts "user ids are:"
-    puts user_ids
     return user_ids
   end
 
   def balance
     paid - spent
+  end
+  
+  # poeple is an arr containing object {:attr => {:id => ,:balance=> },:paid_to => {{user_id =>amount},}}
+  def in? people
+    people.each {|obj| flag = (obj[:attr][:id] == id)}
+    return flag
+  end
+
+  def settle people
+    s = nil
+    people.each do |obj| 
+      s = obj  if obj[:attr][:id] == id
+    end
+    return s
   end
 
 end

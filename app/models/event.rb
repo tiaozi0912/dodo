@@ -17,9 +17,9 @@ class Event < ActiveRecord::Base
   # e.x. params = {"name"=>"Hot Pot", "cost"=>"100.94", "user"=>"Yujun Wu", "participant"=>"All"}
   def get_expense_attr params
       exp_attr = Hash[:name => params['name'],:cost => params['cost'].to_f]
+      puts "username is #{params['user']}"
       # username is not unique but username in the same event is unique
       p_user = users.where("username = ?",params['user'])[0]
-      puts p_user
       exp_attr[:user_id] = p_user.id
       return exp_attr
   end
@@ -50,11 +50,17 @@ class Event < ActiveRecord::Base
     end   
     cash_flow.each {|id,v| User.find(id).update_attributes(:paid => v[:paid],:spent => v[:spent])}
   end
-
-  def clear
-
+ 
+  # here is the algorithm to settle the money among users
+  def settle
+    # poeple is an arr containing object {:attr => {},:pay_to => {{user_id =>amount},}}
+    people = init_settle
+    people.sort_by! {|obj| obj[:attr][:balance]}
+    while people.last[:attr][:balance] > 0.009
+     do_transaction people
+    end
+    return people
   end
-
   
   private
 
@@ -70,6 +76,39 @@ class Event < ActiveRecord::Base
     cf = Hash.new
     users.each {|user| cf[user.id] = Hash[:spent => 0.0, :paid => 0.0]}
     return cf
+  end
+
+  def init_settle
+    people = Array.new
+    users.each do |u|
+      people.push({:attr => {:id => u.id,:balance => u.balance},:paid_to => {}})
+    end
+    return people 
+  end
+  
+  # pick the people with most negative balance and the most positive balance. i.e. ppl.first and ppl.last
+  # update the balance with:
+  #     ppl.last.balance += ppl.first.balance
+  #     ppl.first.balance = 0
+  # record the transaction by updating :pay_to
+  # sort people again
+  def do_transaction ppl
+    p1 = ppl.last
+    p2 = ppl.first
+    record_transaction p2,p1
+    p1[:attr][:balance] += p2[:attr][:balance]
+    p2[:attr][:balance] = 0
+    ppl.sort_by! {|obj| obj[:attr][:balance]}
+  end
+
+  def record_transaction payer,receiver
+    receiver_id = receiver[:attr][:id]
+    amount = -payer[:attr][:balance]
+    if payer[:paid_to].has_key? receiver_id
+      payer[:paid_to] += amount
+    else
+      payer[:paid_to][receiver_id] = amount
+    end
   end
 
 end

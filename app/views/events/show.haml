@@ -46,9 +46,7 @@
     %br
     .pull-left 
       .btn.btn-success.btn-save Save
-    .pull-right
-      .btn.btn-success.btn-calculate 
-        %a{:href => "/calculate/events/#{@event.id}"} Calculate
+    
   = render :partial => 'results',:object => @users
 
 = render :partial => 'js'

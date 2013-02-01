@@ -12,10 +12,13 @@
       %tbody
         - for j in 0..(@users.size-1)
           - @user = @users[j]
+          - @s = @user.settle @people
           %tr 
             %td #{@user.username}
             %td #{@user.spent}
             %td #{@user.paid}
             %td #{@user.paid-@user.spent}
             - for i in 0..(@users.size-1)
-              %td 0
+              - @id = @users[i].id
+              - @amount = (@s[:paid_to].has_key?(@id) ? @s[:paid_to][@id] : 0.0)
+              %td #{@amount}

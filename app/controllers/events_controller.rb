@@ -9,6 +9,12 @@ class EventsController < ApplicationController
     @group = @event.group
     @expenses = @event.expenses
     @users = @event.users
+    @event.calculate
+    if cookies.signed[:results]
+     @people = @event.settle
+     #@s = Array.new
+     #@users.each {|u| @s.push(u.settle @people)}
+    end
   end
 
   def create
@@ -19,20 +25,14 @@ class EventsController < ApplicationController
   end
 
   def update
-    expenses = params[:event][:expense]
-    event = Event.find(params[:id])
-    if !expenses.empty?
-      expenses.each do |k,v|
-        k.to_i <= 0 ? event.build_expense(k,v) : event.update_expense(k,v)
+    @expenses = params[:event][:expense]
+    @event = Event.find(params[:id])
+    if !@expenses.empty?
+      @expenses.each do |k,v|
+        k.to_i <= 0 ? @event.build_expense(k,v) : @event.update_expense(k,v)
       end
     end
-    redirect_to "/events/#{event.id}/#{event.url}"
-  end
-
-  def calculate
     cookies.signed[:results] = true
-    event = Event.find(params[:event_id])
-    event.calculate
-    redirect_to "/events/#{event.id}/#{event.url}"
+    redirect_to "/events/#{@event.id}/#{@event.url}"
   end
 end

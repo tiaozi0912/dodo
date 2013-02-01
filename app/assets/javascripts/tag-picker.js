@@ -12,7 +12,7 @@
       var checkboxes = '';
       for(j=0;j<col;j++){
         var k = j + row * settings.perRow; 
-        checkboxes += "<label class='span4 checkbox'><input type='checkbox' id='" + str_safe(source[k]) + "'>" + source[k] + "</label>"
+        checkboxes += "<label class='span4 checkbox'><input type='checkbox' name='" + source[k] + "' id='" + str_safe(source[k]) + "'>" + source[k] + "</label>"
       }
       $('.tag-picker').find('.row-fluid:last').append(checkboxes);
     }
@@ -81,7 +81,7 @@
   function getTags(){
     var t = [];
     $('.tag-picker input').each(function(){
-      if($(this).is(':checked')) t.push($(this).attr('id'));
+      if($(this).is(':checked')) t.push($(this).attr('name'));
     });
     return t.join(',');
   }
