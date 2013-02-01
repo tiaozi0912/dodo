@@ -12,8 +12,6 @@ class EventsController < ApplicationController
     @event.calculate
     if cookies.signed[:results]
      @people = @event.settle
-     #@s = Array.new
-     #@users.each {|u| @s.push(u.settle @people)}
     end
   end
 
@@ -33,6 +31,7 @@ class EventsController < ApplicationController
       end
     end
     cookies.signed[:results] = true
+    @event.calculate
     redirect_to "/events/#{@event.id}/#{@event.url}"
   end
 end
