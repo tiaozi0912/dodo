@@ -7,6 +7,9 @@
 .pressed{
   text-shadow: 0 -1px 0 rgba(0,0,0,0.8),0 1px 0 rgba(255, 255, 255, 0.5);
 }
+.pressed:hover{
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.8),0 1px 0 rgba(255, 255, 255, 0.5);
+}
 .embossed{
   text-shadow: 0 1px 0 rgba(0,0,0,0.8),0 -1px 0 rgba(255, 255, 255, 0.5);
 }
@@ -50,6 +53,9 @@ input{
 .dark-blue{
 	color: rgb(50,123,253);
 }
+.dark-blue:hover{
+	color: rgb(50,123,253);
+}
 .coffee{
 	color:rgb(183,178,172);
 }
@@ -63,6 +69,10 @@ input{
   -web-border-radius:0px;
   -moz-border-radius:0px;
   padding:10px 15px 10px 15px;
+}
+.btn-primary:hover{
+	background-image: none;
+	background-color: rgb(46,126,255);
 }
 #input-table{
 	background-color: white;
