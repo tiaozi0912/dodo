@@ -1,26 +1,17 @@
-.page 
-  = form_for(@event, :url => {:action => 'create'}, :multipart => true, :html => {:method => 'post'}) do |f|
-    = f.text_field :name, :placeholder => 'New Event Name'
-    .btn-success.btn.create-btn Create
-  %h3 Sample:
-  %br
-  %table.table.table-bordered
-    %thead
-      %tr
-        %td Expenses 
-        %td How Much ($)
-        %td Paid By
-        %td People Include
-    %tbody
-      %tr.disabled#sample-row
-        %td Hotpot
-        %td 100
-        %td Dodo 
-        %td Everyone
-
+#home
+  .container
+    %section#app
+      %h2.pressed Split your sharing expenses easily with Dodo.
+    %section#form-section.shadow
+      = form_for(@event, :url => {:action => 'create'}, :multipart => true, :html => {:method => 'post'}) do |f|
+        = f.text_field :name, :placeholder => 'New Event Name'
+        .btn-primary.btn.create-btn.shadow.pressed.dark-blue Create
+    .line
+  
 :javascript
   $(document).ready(function(){
     $('.create-btn').click(function(){
       createEvent();
     })
+    $('body').setBackgroundImage('/images/blue_background.jpg');
   })     

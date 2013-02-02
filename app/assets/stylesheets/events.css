@@ -28,10 +28,13 @@ h2{
 	font-size:24px;
 	line-height:36px;
 }
-p,body,.table td{
+p,body,.table td,input{
   font-size:24px;
   line-height:36px;
   color:#333;
+}
+input{
+	height:auto;
 }
 
 #event-name-section{
@@ -59,7 +62,7 @@ p,body,.table td{
   border-radius: 0px;
   -web-border-radius:0px;
   -moz-border-radius:0px;
-  padding:15px;
+  padding:10px 15px 10px 15px;
 }
 #input-table{
 	background-color: white;
@@ -87,5 +90,45 @@ table.table td{
 		color-stop(0, rgb(0,0,0)),
 		color-stop(1, rgb(102,102,102))
 	);
+}
+
+/* home css */
+#home{
+	/*background-image:url('/images/blue_background.jpg');
+	background-size: cover;*/
+}
+#home .container{
+	padding:150px;
+}
+#home section{
+	padding:40px;
+	margin-bottom:50px;
+}
+#app{
+	background-color: rgba(85,155,255,0.2);	
+	color:white;
+}
+#form-section{
+	background-color: rgba(255,255,255,0.6);
+	border-radius: 5px;
+	-web-border-radius:5px;
+	-moz-border-radius:5px;
+}
+#home form{
+	margin-bottom:0px;
+}
+#home input{
+	color:#555;
+	padding:10px;
+	margin-bottom:0px;
+	margin-right:20px;
+	border:solid 2px #999;
+	width:300px;
+}
+.line{
+	border:solid 1px rgba(82,156,183,0.8);
+	-webkit-box-shadow: 0 2px 1px rgb(124,213,250);
+	box-shadow: 0 2px 1px rgba(124,213,250,0.5);
+	-moz-box-shadow: 0 2px 1px rgb(124,213,250);
 }
 

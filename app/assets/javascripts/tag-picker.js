@@ -55,7 +55,7 @@
         }
       }
       //disable the text input
-      $selector.prop('disabled',true);
+      $selector.attr('contenteditable',false);
     }
 
     if($('.tag-picker').length == 0){ 

@@ -140,4 +140,10 @@ var dodoIs = function(){
   return "Dodo is " + arr[i];
 }
 
+$.fn.setBackgroundImage = function(link){
+  var url = 'url(' + link + ')';
+  this.css('background-image',url);
+  this.css('background-size','cover');
+}
+
 
