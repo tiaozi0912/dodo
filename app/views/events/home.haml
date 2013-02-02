@@ -1,7 +1,9 @@
 #home
   .container
     %section#app
-      %h2.pressed Split your sharing expenses easily with Dodo.
+      %h2.pressed 
+        %span Split your sharing expenses easily with 
+        %span#dodo-font Dodo.
     %section#form-section.shadow
       = form_for(@event, :url => {:action => 'create'}, :multipart => true, :html => {:method => 'post'}) do |f|
         = f.text_field :name, :placeholder => 'New Event Name'
