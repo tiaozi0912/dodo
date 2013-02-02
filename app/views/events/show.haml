@@ -1,52 +1,55 @@
-.page 
+.page
   = form_for(@event, :multipart => true, :html => {:method => 'put'}) do |f|
 
-    = f.text_field :name, :value => "#{@event.name}"
+    %section#event-name-section.shadow
+      .container
+        %h1#event-name.dark-blue.pressed{:contenteditable => 'true'} #{@event.name}
+        = f.text_field :name, :value => "#{@event.name}",:class => 'invisible'
     
-    -# the group input is tricky
-    %label#group-label Group:
-    %input{:name => "event[group]",:type => 'text',:id => 'event_group'}
-    -# TODO: should be automatically add with ajax
-    .btn.btn-primary.btn-add-people add those people
-    %br
-    %br
+    %section#event-section
+      .container
+        -# the group input is tricky
+        %label#group-label
+          %h2.coffee.pressed Group:
+        %input.invisible{:name => "event[group]",:type => 'text',:id => 'event_group'}
+        -# TODO: should be automatically add with ajax
+        -#.btn.btn-primary.btn-add-people add those people
+        %br
+        %br
 
-    %table.table.table-bordered
-      %thead
-        %tr
-          %td Expenses 
-          %td How Much ($)
-          %td Paid By
-          %td People Include
-      %tbody
-        - if !@expenses.empty?
-          - for i in 0..@expenses.size - 1
-            - @ep = @expenses[i]
-            %tr.table-row
+        %table.table#input-table.shadow
+          %thead.black-gradient
+            %tr
+              %td Expenses 
+              %td How Much ($)
+              %td Paid By
+              %td People Include
+          %tbody
+            - if !@expenses.empty?
+              - for i in 0..@expenses.size - 1
+                - @ep = @expenses[i]
+                %tr.table-row
+                  %td
+                    = text_input("#{@ep.id}",'name',"#{@ep.name}")
+                  %td 
+                    = text_input("#{@ep.id}",'cost',"#{@ep.cost}")
+                  %td 
+                    = text_input("#{@ep.id}",'user',"#{@ep.user.username}")
+                  %td 
+                    = text_input("#{@ep.id}",'participant',"#{@ep.participants_to_s}")
+            %tr.table-row.table-row-new
               %td
-                = text_input("#{@ep.id}",'name',"#{@ep.name}")
+                = text_input("0",'name','')
               %td 
-                = text_input("#{@ep.id}",'cost',"#{@ep.cost}")
+                = text_input("0",'cost','')
               %td 
-                = text_input("#{@ep.id}",'user',"#{@ep.user.username}")
+                = text_input("0",'user','')
               %td 
-                = text_input("#{@ep.id}",'participant',"#{@ep.participants_to_s}") # Hardcode all for now
-        %tr.table-row.table-row-new
-          %td
-            = text_input("0",'name','')
-          %td 
-            = text_input("0",'cost','')
-          %td 
-            = text_input("0",'user','')
-          %td 
-            = text_input("0",'participant','All')
+                = text_input("0",'participant','All')
 
-    .btn.btn-primary.btn-add-row Add a row
-    %br
-    %br
-    .pull-left 
-      .btn.btn-success.btn-save Save
-    
-  = render :partial => 'results',:object => @users
+        .btn.btn-primary.btn-add-row.pressed.dark-blue Add a row
+        .pull-right.btn.btn-primary.btn-save.pressed.dark-blue Save
+        
+        = render :partial => 'results',:object => @users
 
 = render :partial => 'js'

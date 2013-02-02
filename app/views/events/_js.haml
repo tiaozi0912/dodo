@@ -2,8 +2,7 @@
   $(document).ready(function(){
     var group = #{@group};
     var event_id = #{@event.id};
-    loadGroup(group);
-    preprocessTable();
+    preprocessTable(group);
     
     //Add row to the table
     $('.btn-add-row').click(function(){
@@ -21,12 +20,12 @@
     })
 
     //specify the people for the expense
-    $('body').on('click','.participant',function(){
+    $('body').on('click','td span.participant',function(){
       $(this).tagPicker(group);
     });
 
     //specify the person who paid
-    $('body').on('click','.user',function(){
+    $('body').on('click','td span.user',function(){
       $(this).tagPicker(group);      
     })
 

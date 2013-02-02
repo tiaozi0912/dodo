@@ -38,12 +38,12 @@
       $('.tag-picker').append("<div class='btn btn-success' id='btn-done'>Done</div>");
       //set the td parent position as relative
       $selector.parent().css('position','relative');
-      $('.tag-picker').css('top',1.3 * $selector.outerHeight());
+      $('.tag-picker').css('top',1.5 * $selector.outerHeight());
     };
 
     $.fn.preChecked = function(){
       var $selector = this;
-      var val = $selector.val();
+      var val = $selector.html();
       if(val == "All"){
         $('.tag-picker input').prop('checked',true);
       }else if(val != ''){
@@ -73,8 +73,8 @@
     
     $('body').on('click','.tag-picker #btn-done', function(){
       var tags = getTags();
+      $input.html(tags);    
       dismissTagPicker();
-      $input.val(tags);     
     });
   });
 

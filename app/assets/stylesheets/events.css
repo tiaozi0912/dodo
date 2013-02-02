@@ -1,6 +1,91 @@
 .page{
-	margin:40px 0px 40px 0px;
+	margin:0px 0px 40px 0px;
 }
 .disabled{
   color:#ccc;
 }
+.pressed{
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.8),0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.embossed{
+  text-shadow: 0 1px 0 rgba(0,0,0,0.8),0 -1px 0 rgba(255, 255, 255, 0.5);
+}
+.invisible{
+	display: none;
+}
+body{
+  background-image: url('/images/bedge_grunge.png');
+}
+h1{
+	font-size:48px;
+	line-height:56px;
+}
+h2{
+	font-size:36px;
+	line-height:44px;
+}
+.btn{
+	font-size:24px;
+	line-height:36px;
+}
+p,body,.table td{
+  font-size:24px;
+  line-height:36px;
+  color:#333;
+}
+
+#event-name-section{
+	background-color:rgb(94,155,252);
+	padding:50px 0 50px 0px;
+	border-bottom:1px solid #666;
+}
+.shadow{
+	-webkit-box-shadow: 0 1px 4px #666;
+	box-shadow: 0 1px 4px #666;
+	-moz-box-shadow: 0 1px 4px #666;
+}
+.dark-blue{
+	color: rgb(50,123,253);
+}
+.coffee{
+	color:rgb(183,178,172);
+}
+#event-section{
+	margin-top:50px;
+}
+.btn-primary{
+  background-color: rgb(94,155,252);
+  background-image:none;
+  border-radius: 0px;
+  -web-border-radius:0px;
+  -moz-border-radius:0px;
+  padding:15px;
+}
+#input-table{
+	background-color: white;
+}
+table.table td{
+	text-align: center;
+}
+#input-table thead td{
+	color:white;
+}
+.table td{
+	padding:15px 0 15px 0px;
+}
+
+.black-gradient{
+	background-image: linear-gradient(bottom, rgb(0,0,0) 0%, rgb(102,102,102) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(0,0,0) 0%, rgb(102,102,102) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(0,0,0) 0%, rgb(102,102,102) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(0,0,0) 0%, rgb(102,102,102) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(0,0,0) 0%, rgb(102,102,102) 100%);
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, rgb(0,0,0)),
+		color-stop(1, rgb(102,102,102))
+	);
+}
+

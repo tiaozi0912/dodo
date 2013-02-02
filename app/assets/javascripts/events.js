@@ -40,12 +40,13 @@ function addRow(){
   for(i=0;i<cols.length;i++){
     td += "<td><input id='event_expense_" + count + "_" + cols[i]
                     + "' name='event[expense][" + count + '][' + cols[i] 
-                    + "]' type='text' class='" + cols[i] + "'></td>";
+                    + "]' type='text' class='invisible " + cols[i] + "'></td>";
   }
   tr = "<tr class='table-row table-row-new'>" + td + "</tr>";
   $('tbody').append(tr);
-  var $lastTd = $('.table-row-new:last td input:last');
-  $lastTd.val('All');
+  var $lastInput = $('.table-row-new:last td input:last');
+  $lastInput.val('All');
+  $lastInput.addEditableContent();
 }
 
 //exist people will be dynamically changed when calling ajax to add people
@@ -102,9 +103,34 @@ function saveForm(){
   }
 }
 
-function preprocessTable(){
+function preprocessTable(group){
+  loadGroup(group);
   $('.table-row-new input:last').addClass('participant');
   $('.table-row-new input[id*=user]').addClass('payer');
+  $('#input-table').addEditableRows();
+  //save changes in the editable content to the hidden input
+  $('body').on('mouseout','.editable-content',function(){
+  //$('body').on('blur','.editable-content',function(){
+    saveChangesToInput($(this));
+  });
+}
+
+$.fn.addEditableRows = function(){
+  $table = this;
+  $table.find('input').each(function(i,v){
+    $(v).addEditableContent();
+  })
+}
+
+$.fn.addEditableContent = function(){
+  var classname = this.attr('class').replace(/ invisible/,'');
+  var s = "<span class='editable-content " + classname + "' contenteditable='true'>" + this.val() + "</span>";
+  this.after(s);
+}
+
+function saveChangesToInput($selector){
+  var content = $selector.html();
+  $selector.siblings('input').attr('value',content);
 }
 
 var dodoIs = function(){
