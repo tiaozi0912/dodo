@@ -74,8 +74,11 @@ input{
 	background-image: none;
 	background-color: rgb(46,126,255);
 }
-#input-table{
+#input-table,#result-table{
 	background-color: white;
+}
+#result-table{
+	margin-top:70px;
 }
 table.table td{
 	text-align: center;
@@ -85,6 +88,7 @@ table.table td{
 }
 .table td{
 	padding:15px 0 15px 0px;
+	height:36px;
 }
 
 .black-gradient{
@@ -101,7 +105,21 @@ table.table td{
 		color-stop(1, rgb(102,102,102))
 	);
 }
+.green-gradient{
+    background-image: linear-gradient(bottom, rgb(158,223,133) 100%, rgb(115,155,87) 0%);
+	background-image: -o-linear-gradient(bottom, rgb(158,223,133) 100%, rgb(115,155,87) 0%);
+	background-image: -moz-linear-gradient(bottom, rgb(158,223,133) 100%, rgb(115,155,87) 0%);
+	background-image: -webkit-linear-gradient(bottom, rgb(158,223,133) 100%, rgb(115,155,87) 0%);
+	background-image: -ms-linear-gradient(bottom, rgb(158,223,133) 100%, rgb(115,155,87) 0%);
 
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(1, rgb(158,223,133)),
+		color-stop(0, rgb(115,155,87))
+	);
+}
 /* home css */
 #home{
 	/*background-image:url('/images/blue_background.jpg');

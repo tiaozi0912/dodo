@@ -1,13 +1,13 @@
 - if cookies.signed[:results]
   %section.results
-    %table.table.table-striped
-      %thead
+    %table.table.shadow#result-table
+      %thead.green-gradient
         %tr
           %td People
           %td Spent
           %td Paid 
           %td Balance
-          - for i in 0..(@users.size-1)
+          -#- for i in 0..(@users.size-1)
             %td Pay to #{@users[i].username}
       %tbody
         - for j in 0..(@users.size-1)
@@ -18,7 +18,7 @@
             %td #{@user.spent}
             %td #{@user.paid}
             %td #{@user.paid-@user.spent}
-            - for i in 0..(@users.size-1)
+            -#- for i in 0..(@users.size-1)
               - @id = @users[i].id
               - @amount = (@s[:paid_to].has_key?(@id) ? @s[:paid_to][@id] : 0.0)
               %td #{@amount}

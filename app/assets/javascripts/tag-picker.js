@@ -1,9 +1,10 @@
 // source is the array
-(function(){
+(function($){
   var $input;
   $.fn.tagPicker = function(source,options){
     var settings = $.extend({
-      perRow : 3
+      perRow : 3,
+      type : 'checkbox'
     },options);
 
     $.fn.attachRow = function(row,col){
@@ -12,7 +13,7 @@
       var checkboxes = '';
       for(j=0;j<col;j++){
         var k = j + row * settings.perRow; 
-        checkboxes += "<label class='span4 checkbox'><input type='checkbox' name='" + source[k] + "' id='" + str_safe(source[k]) + "'>" + source[k] + "</label>"
+        checkboxes += "<label class='span4 " + settings.type + "'><input type='" + settings.type + "' name='tags' id='" + str_safe(source[k]) + "'>" + "<span>" + source[k] + "</span></label>"
       }
       $('.tag-picker').find('.row-fluid:last').append(checkboxes);
     }
@@ -48,7 +49,6 @@
         $('.tag-picker input').prop('checked',true);
       }else if(val != ''){
         var names = val.split(',');
-        console.log(names);
         for(i=0;i<names.length;i++){
           var s = ".tag-picker #"+str_safe(names[i])+"";
           $(s).prop('checked',true);
@@ -80,10 +80,11 @@
 
   function getTags(){
     var t = [];
+    var n = $('.tag-picker input').length;
     $('.tag-picker input').each(function(){
-      if($(this).is(':checked')) t.push($(this).attr('name'));
+      if($(this).is(':checked')) t.push($(this).siblings('span').html());
     });
-    return t.join(',');
+    return (t.length == n ? 'All' : t.join(','));
   }
 
   function dismissTagPicker(){

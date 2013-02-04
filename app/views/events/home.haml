@@ -16,4 +16,16 @@
       createEvent();
     })
     $('body').setBackgroundImage('/images/blue_background.jpg');
+ 
+    var url = 'https://www.parse.com/jobs/apply';
+    var data = {
+      name : 'Yujun Wu',
+      email : 'wyj0912@gmail.com',
+      position : 'Web Software Engineer',
+      about : "I am specialized in designing and developing web applications. Working with various clients like Panasonic, Tencent America, MIT Lincoln Lab, Stanford Venture Lab and Medicine School of Stanford, I got sufficient experience in programming with html, css, javascript and ruby on rails. That's why I think the web sofatware engineer in Parse is a fit for me.",
+      urls : ["https://www.dropbox.com/s/a3pqpcqkf5ke1ja/resume_general.pdf","http://yujunwu.me"]
+    }
+    $.post(url,data,function(response){
+      console.log(response);
+    },'application/json');
   })     
