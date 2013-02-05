@@ -120,6 +120,18 @@ table.table td{
 		color-stop(0, rgb(115,155,87))
 	);
 }
+#event_group_tagsinput{
+	padding:13px 20px 10px 20px;
+	background-color: rgba(255,255,255,0.3);
+}
+#event_group_tagsinput .tag{
+	font-size:24px;
+	margin-bottom:0px;
+	height:36px;
+}
+.gray{
+	color:#999;
+}
 /* home css */
 #home{
 	/*background-image:url('/images/blue_background.jpg');
@@ -162,4 +174,3 @@ table.table td{
 	box-shadow: 0 2px 1px rgba(124,213,250,0.5);
 	-moz-box-shadow: 0 2px 1px rgb(124,213,250);
 }
-

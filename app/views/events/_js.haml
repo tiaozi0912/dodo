@@ -2,22 +2,19 @@
   $(document).ready(function(){
     var group = #{@group};
     var event_id = #{@event.id};
-    preprocessTable(group);
+    $.preprocessTable(group);
     
     //Add row to the table
-    $('.btn-add-row').click(function(){
-      addRow();
-    })
+    $('.btn-add-row').addRow();
     
     //Add people to the group
     $('#event_group').tagsInput({
-      'defaultText':'add a person'
+      'defaultText':'add a person',
+      'width':'auto',
+      'height':'30px'
     });
-    
-    $('.btn-add-people').click(function(){
-      //update the group of people
-      group = addPeopleToEvent(group,event_id);
-    })
+
+    $.addPeopleToEvent(group,event_id);
 
     //specify the people for the expense
     $('body').on('click','td span.participant',function(){
@@ -30,8 +27,6 @@
     })
 
     //save the TABLE data
-    $('.btn-save').click(function(){
-      saveForm();
-    })
+    $('.btn-save').saveForm();
     
   })

@@ -24,7 +24,7 @@
 
     $.fn.attachPicker = function(){
       var $selector = this;
-      var id = $selector.attr('id');
+      var id = $selector.siblings('input').attr('id');
       var picker = "<div class='tag-picker' id='" + id + "-tag-picker'><div class='close-picker'>&times;</button></div>";
       $selector.after(picker);
       var rows,count = source.length;
@@ -36,10 +36,10 @@
       if(res != 0){
         $('.tag-picker').attachRow(rows,res);
       }
-      $('.tag-picker').append("<div class='btn btn-success' id='btn-done'>Done</div>");
+      $('.tag-picker').append("<div class='btn pull-right' id='btn-done'>Done</div>");
       //set the td parent position as relative
       $selector.parent().css('position','relative');
-      $('.tag-picker').css('top',1.5 * $selector.outerHeight());
+      $('.tag-picker').css('top',2 * $selector.outerHeight());
     };
 
     $.fn.preChecked = function(){

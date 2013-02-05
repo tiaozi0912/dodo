@@ -3,10 +3,17 @@
 	z-index:10;
 	width:300px;
 	padding:20px;
-	background-color:#eee;
+	background-color:#333;
 	border-radius:5px;
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
+}
+.tag-picker span{
+	color:#eee;
+}
+.tag-picker #btn-done{
+	font-size:13px;
+	line-height: 18px;
 }
 .tag-picker .close-picker{
 	position:absolute;
@@ -15,9 +22,9 @@
 	font-size:16px;
 	font-weight:bold;
 	line-height:18px;
-	color:#000;
+	color:white;
 	text-shadow:0 1px 0 #fff;
-	opacity:0.2;
+	opacity:0.8;
 	padding:0;
 	cursor:pointer;
 }

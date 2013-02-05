@@ -12,11 +12,7 @@
         %label#group-label
           %h2.coffee.pressed Group:
         %input.invisible{:name => "event[group]",:type => 'text',:id => 'event_group'}
-        -# TODO: should be automatically add with ajax
-        -#.btn.btn-primary.btn-add-people add those people
         %br
-        %br
-
         %table.table#input-table.shadow
           %thead.black-gradient
             %tr
@@ -30,22 +26,22 @@
                 - @ep = @expenses[i]
                 %tr.table-row
                   %td
-                    = text_input("#{@ep.id}",'name',"#{@ep.name}")
+                    = text_input("#{@ep.id}",'name',"#{@ep.name}",'e.x. Tickets')
                   %td 
-                    = text_input("#{@ep.id}",'cost',"#{@ep.cost}")
+                    = text_input("#{@ep.id}",'cost',"#{@ep.cost}",'e.x. 80')
                   %td 
-                    = text_input("#{@ep.id}",'user',"#{@ep.user.username}")
+                    = text_input("#{@ep.id}",'user',"#{@ep.user.username}",'e.x. Mike')
                   %td 
-                    = text_input("#{@ep.id}",'participant',"#{@ep.participants_to_s}")
+                    = text_input("#{@ep.id}",'participant',"#{@ep.participants_to_s}",'e.x. All')
             %tr.table-row.table-row-new
               %td
-                = text_input("0",'name','')
+                = text_input("0",'name','','e.x. Tickets')
               %td 
-                = text_input("0",'cost','')
+                = text_input("0",'cost','','e.x. 80')
               %td 
-                = text_input("0",'user','')
+                = text_input("0",'user','','e.x. Mike')
               %td 
-                = text_input("0",'participant','All')
+                = text_input("0",'participant','All','e.x. All')
 
         .btn.btn-primary.btn-add-row.pressed.dark-blue Add a row
         .pull-right.btn.btn-primary.btn-save.pressed.dark-blue Save
