@@ -109,6 +109,7 @@
       var costIsNumber = true;
       $('.table-row-new td input[id*=cost]').each(function(){
         var amount = $(this).val();
+        // Will be called multiple times
         if(!fv.costValidated($(this),amount)) costIsNumber = false;
       })
       if(costIsNumber){
