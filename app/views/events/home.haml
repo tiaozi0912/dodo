@@ -1,14 +1,15 @@
 #home
   .container
-    %section#app
-      %h2.pressed 
-        %span Split your sharing expenses easily with 
-        %span#dodo-font Dodo.
-    %section#form-section.shadow
-      = form_for(@event, :url => {:action => 'create'}, :multipart => true, :html => {:method => 'post'}) do |f|
-        = f.text_field :name, :placeholder => 'New Event Name'
-        .btn-primary.btn.create-btn.shadow.pressed.dark-blue Create
-    .line
+    .sub-container
+      %section#app
+        %h2.pressed 
+          %span Split your sharing expenses easily with 
+          %span#dodo-font Dodo.
+      %section#form-section.shadow
+        = form_for(@event, :url => {:action => 'create'}, :multipart => true, :html => {:method => 'post'}) do |f|
+          = f.text_field :name, :placeholder => 'New Event Name'
+          .btn-primary.btn.create-btn.shadow.pressed.dark-blue Create
+      .line
   
 :javascript
   $(document).ready(function(){

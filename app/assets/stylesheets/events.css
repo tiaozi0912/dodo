@@ -137,7 +137,7 @@ table.table td{
 	/*background-image:url('/images/blue_background.jpg');
 	background-size: cover;*/
 }
-#home .container{
+#home .sub-container{
 	padding:150px;
 }
 #home section{
@@ -168,9 +168,23 @@ table.table td{
 	border:solid 2px #999;
 	width:300px;
 }
+#home-bg{
+	position: absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	z-index: -1;
+}
+#home-bg img{
+	width:100%;
+	height:100%;
+}
 .line{
 	border:solid 1px rgba(82,156,183,0.8);
 	-webkit-box-shadow: 0 2px 1px rgb(124,213,250);
 	box-shadow: 0 2px 1px rgba(124,213,250,0.5);
 	-moz-box-shadow: 0 2px 1px rgb(124,213,250);
+}
+.container{
+	/*margin:0px;*/
 }
