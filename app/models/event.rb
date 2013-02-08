@@ -40,26 +40,16 @@ class Event < ActiveRecord::Base
       Participant.update_with_user_ids user_ids,exp
     end
   end
-
-  def calculate
-    # calculate the money spent for each person and the money paid for each person
-    cash_flow = init_cash_flow
-    expenses.each do |exp|
-      cash_flow = exp.paid_per_person cash_flow
-      cash_flow = exp.spent_per_person cash_flow
-    end   
-    cash_flow.each {|id,v| User.find(id).update_attributes(:paid => v[:paid],:spent => v[:spent])}
-  end
  
   # here is the algorithm to settle the money among users
   def settle
-    # poeple is an arr containing object {:attr => {},:pay_to => {{user_id =>amount},}}
+    # poeple is an arr containing object {:attr => {:id => ,:balance =>},:pay_to => {{user_id =>amount},}}
     people = init_settle
     people.sort_by! {|obj| obj[:attr][:balance]}
     while people.last[:attr][:balance] > 0.009
      do_transaction people
     end
-    return people
+    people = select people
   end
   
   private
@@ -81,7 +71,7 @@ class Event < ActiveRecord::Base
   def init_settle
     people = Array.new
     users.each do |u|
-      people.push({:attr => {:id => u.id,:balance => u.balance},:paid_to => {}})
+      people.push({:attr => {:id => u.id,:balance => u.balance(id)},:paid_to => {}})
     end
     return people 
   end
@@ -105,10 +95,18 @@ class Event < ActiveRecord::Base
     receiver_id = receiver[:attr][:id]
     amount = -payer[:attr][:balance]
     if payer[:paid_to].has_key? receiver_id
-      payer[:paid_to] += amount
+      payer[:paid_to][receiver_id] += amount
     else
       payer[:paid_to][receiver_id] = amount
     end
+  end
+
+  #people is an array contains {:attr=>{:id=>27, :balance=>0}, :paid_to=>{28=>8.75}}
+  #select people whose :paid_to => {}
+  def select people
+    selected = Array.new
+    people.each {|p| selected.push(p) if !p[:paid_to].empty?}
+    return selected
   end
 
 end

@@ -66,6 +66,11 @@
 
   }
 
+  $.fn.saveChangesToInput = function(){
+    var content = this.html();
+    this.siblings('input').attr('value',content);
+  }
+
   $(document).ready(function(){
     $('body').on('click','.tag-picker .close-picker',function(){
       dismissTagPicker();
@@ -73,7 +78,8 @@
     
     $('body').on('click','.tag-picker #btn-done', function(){
       var tags = getTags();
-      $input.html(tags);    
+      $input.html(tags);   
+      $input.saveChangesToInput; 
       dismissTagPicker();
     });
   });

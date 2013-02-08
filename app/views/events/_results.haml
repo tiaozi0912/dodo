@@ -1,5 +1,18 @@
-- if cookies.signed[:results]
-  %section.results
+- if !@event.expenses.empty?
+  %section#settle.shadow
+    .container
+      .sub-container
+        %h2.dark-blue Dodo said:
+        - for i in 0..@people.size-1
+          - @debtor = User.find(@people[i][:attr][:id])
+          - @people[i][:paid_to].each do |user_id,amount|
+            - @creditor = User.find(user_id)
+            %p
+              %span.name.dark-blue #{@debtor.username}
+              %span should pay
+              %span.name.dark-blue #{@creditor.username} 
+              %span $#{amount}
+  %section.results.container
     %table.table.shadow#result-table
       %thead.green-gradient
         %tr
@@ -7,18 +20,12 @@
           %td Spent
           %td Paid 
           %td Balance
-          -#- for i in 0..(@users.size-1)
-            %td Pay to #{@users[i].username}
       %tbody
         - for j in 0..(@users.size-1)
           - @user = @users[j]
-          - @s = @user.settle @people
           %tr 
             %td #{@user.username}
-            %td #{@user.spent}
-            %td #{@user.paid}
-            %td #{@user.paid-@user.spent}
-            -#- for i in 0..(@users.size-1)
-              - @id = @users[i].id
-              - @amount = (@s[:paid_to].has_key?(@id) ? @s[:paid_to][@id] : 0.0)
-              %td #{@amount}
+            %td #{@user.spent(@event.id)}
+            %td #{@user.paid(@event.id)}
+            %td #{@user.balance(@event.id)}
+            

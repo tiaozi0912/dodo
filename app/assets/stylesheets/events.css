@@ -188,3 +188,17 @@ table.table td{
 .container{
 	/*margin:0px;*/
 }
+/* home css done */
+
+#settle{
+	padding:40px;
+	margin-top:40px;
+	background-color:rgb(158,223,133);
+}
+#settle h2{
+	font-weight: normal;
+	margin-bottom: 20px;
+}
+#settle p{
+	color:white;;
+}

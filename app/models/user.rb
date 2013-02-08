@@ -19,8 +19,30 @@ class User < ActiveRecord::Base
     return user_ids
   end
 
-  def balance
-    paid - spent
+  def paid event_id
+    paid = 0
+    expenses.where('event_id = ?',event_id).each {|exp| paid += exp.cost}
+    return paid.round(2)
+  end
+
+  def spent event_id
+    spent = 0
+    participants_in_event(event_id).each {|p| spent += p.expense.spent_per_person}
+    return spent.round(2)
+  end
+
+  def balance event_id
+    paid(event_id) - spent(event_id)
+  end
+  
+  def participants_in_event event_id
+    a = Array.new
+    real_participants.each {|p| a.push(p) if p.expense.event.id == event_id}
+    return a
+  end
+
+  def real_participants
+    participants.where('flag = true')
   end
   
   # poeple is an arr containing object {:attr => {:id => ,:balance=> },:paid_to => {{user_id =>amount},}}

@@ -5,5 +5,6 @@ class ApplicationController < ActionController::Base
   def participants_to_s e
   	e.participants_to_s
   end
+
 end
 

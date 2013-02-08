@@ -36,8 +36,8 @@
   var cols = ['name','cost','user','participant'];
   var placeholder = ['e.x. Tickets','e.x. 80','e.x. Mike','e.x. All'];
   $.fn.addRow = function(){
-    var td,tr,count,group;
     this.click(function(){
+      var td,tr,count,group;
       group = $('.tag span').getNames();
       count = - $('.table-row-new').length;
       for(i=0;i<cols.length;i++){
@@ -127,7 +127,7 @@
     })
     //save changes in the editable content to the hidden input
     $('body').on('mouseout','.editable-content',function(){
-      saveChangesToInput($(this));
+      $(this).saveChangesToInput();
     });
   }
 
@@ -150,11 +150,6 @@
     this.after(s);
   }
 
-  function saveChangesToInput($selector){
-    var content = $selector.html();
-    $selector.siblings('input').attr('value',content);
-  }
-
   var dodoIs = function(){
     var arr = ["smart?","ben ben de!","sexyyyyy!","so cute???","cute!!!!!","sha hu hu","pretty!!","dump~","dudududu!","zhu zhu!"];
     var i = parseInt(Math.random() * arr.length);
@@ -168,8 +163,4 @@
     this.css('background-size','cover');
   }
 })(jQuery)
-
-function change(arr){
-  arr = [];
-}
 
