@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   
   def participants_in_event event_id
     a = Array.new
-    real_participants.each {|p| a.push(p) if p.expense.event.id == event_id}
+    real_participants.each {|p| a.push(p) if p.expense.event_id == event_id}
     return a
   end
 

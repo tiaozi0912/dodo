@@ -5,7 +5,8 @@ class Expense < ActiveRecord::Base
   belongs_to :event
   has_many :participants, :dependent => :destroy
  
-  # default_scope :order => 'expenses.created_at DESC'
+  default_scope :order => 'expenses.created_at ASC'
+
   def find_participant_by_user_id user_id
     participants.where('user_id = ?',user_id)[0]
   end
@@ -27,8 +28,7 @@ class Expense < ActiveRecord::Base
   
   #spent for the people who participate
   def spent_per_person 
-    p_ids = real_participants_ids
-    count = p_ids.size
+    count = real_participants.size
     return (cost / count).round(2)
   end
 

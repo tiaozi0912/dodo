@@ -46,8 +46,13 @@ class Event < ActiveRecord::Base
     # poeple is an arr containing object {:attr => {:id => ,:balance =>},:pay_to => {{user_id =>amount},}}
     people = init_settle
     people.sort_by! {|obj| obj[:attr][:balance]}
+    count = 1
     while people.last[:attr][:balance] > 0.009
      do_transaction people
+     puts count
+     puts people.last[:attr][:balance]
+     count +=1
+     break if count > 500
     end
     people = select people
   end
@@ -83,8 +88,8 @@ class Event < ActiveRecord::Base
   # record the transaction by updating :pay_to
   # sort people again
   def do_transaction ppl
-    p1 = ppl.last
-    p2 = ppl.first
+    p1 = ppl.last  
+    p2 = ppl.first  # the person need to pay others most
     record_transaction p2,p1
     p1[:attr][:balance] += p2[:attr][:balance]
     p2[:attr][:balance] = 0

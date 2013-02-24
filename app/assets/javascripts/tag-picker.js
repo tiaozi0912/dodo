@@ -79,7 +79,7 @@
     $('body').on('click','.tag-picker #btn-done', function(){
       var tags = getTags();
       $input.html(tags);   
-      $input.saveChangesToInput; 
+      $input.saveChangesToInput(); 
       dismissTagPicker();
     });
   });

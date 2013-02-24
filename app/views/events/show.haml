@@ -21,7 +21,17 @@
               %td Paid By
               %td People Include
           %tbody
-            - if !@expenses.empty?
+            - if @expenses.empty?
+              %tr.table-row.table-row-new
+                %td
+                  = text_input("0",'name','','e.x. Tickets')
+                %td 
+                  = text_input("0",'cost','','e.x. 80')
+                %td 
+                  = text_input("0",'user','','e.x. Mike')
+                %td 
+                  = text_input("0",'participant','All','e.x. All')
+            - else
               - for i in 0..@expenses.size - 1
                 - @ep = @expenses[i]
                 %tr.table-row
@@ -33,17 +43,6 @@
                     = text_input("#{@ep.id}",'user',"#{@ep.user.username}",'e.x. Mike')
                   %td 
                     = text_input("#{@ep.id}",'participant',"#{@ep.participants_to_s}",'e.x. All')
-            - else
-              %tr.table-row.table-row-new
-                %td
-                  = text_input("0",'name','','e.x. Tickets')
-                %td 
-                  = text_input("0",'cost','','e.x. 80')
-                %td 
-                  = text_input("0",'user','','e.x. Mike')
-                %td 
-                  = text_input("0",'participant','All','e.x. All')
-
         .btn.btn-primary.btn-add-row.pressed.dark-blue Add a row
         .pull-right.btn.btn-primary.btn-save.pressed.dark-blue Save
         

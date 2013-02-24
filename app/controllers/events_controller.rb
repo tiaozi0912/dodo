@@ -29,4 +29,14 @@ class EventsController < ApplicationController
     end
     redirect_to "/events/#{@event.id}/#{@event.url}"
   end
+
+  def update_name
+    event = Event.find(params[:event_id].to_i)
+    event.update_attributes(:name => params['name'])
+    if event.nil?
+      render :json => {:error => 'Fail to update the event name.'}
+    else
+      render :json => {:success => 'Event name is updated successfully.'}
+    end
+  end
 end

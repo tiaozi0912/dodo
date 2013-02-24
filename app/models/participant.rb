@@ -6,6 +6,7 @@ class Participant < ActiveRecord::Base
   def self.build_with_user_ids user_ids,exp
     all_ids = exp.event.users.map(&:id)
     all_ids.each{|i| Participant.create(:user_id => i,:expense_id => exp.id, :flag => user_ids.include?(i))}
+    #user_ids.each{|id| Participant.create(:user_id => id,:expense_id => exp.id)}
   end
 
   def self.update_with_user_ids user_ids,exp

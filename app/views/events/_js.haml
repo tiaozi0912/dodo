@@ -3,6 +3,9 @@
     var group = #{@group};
     var event_id = #{@event.id};
     $.preprocessTable(group);
+
+    //update the event name
+    $('#event-name').eventNameWaitForUpdating();
     
     //Add row to the table
     $('.btn-add-row').addRow();
