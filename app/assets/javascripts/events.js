@@ -34,9 +34,6 @@
     $('#event_group').val(v);
   }
 
-  var cols = ['name','cost','user','participant'];
-  var placeholder = ['e.x. Tickets','e.x. 80','e.x. Mike','e.x. All'];
-
   $.fn.addEditableContent = function(){
     var s;
     var classname = this.attr('class');
@@ -46,27 +43,30 @@
     }else{
       s = "<span class='editable-content " + classname + "' contenteditable='true'>" + this.val() + "</span>";
     }
+    //console.log(s);
     this.after(s);
   }
 
+  var cols = ['name','cost','user','participant'];
+  var placeholder = ['e.x. Tickets','e.x. 80','e.x. Mike','e.x. All'];
+
   $.fn.addRow = function(){
     this.click(function(){
-      var td,tr,count,group;
-      group = $('.tag span').getNames();
+      var td='',tr,count,group;
+      //group = $('.tag span').getNames();
       count = - $('.table-row-new').length;
-      for(i=0;i<cols.length;i++){
+      for(var i=0;i<cols.length;i++){
         td += "<td><input id='event_expense_" + count + "_" + cols[i]
                         + "' name='event[expense][" + count + '][' + cols[i] 
                         + "]' type='text' class='invisible " + cols[i] + "' placeholder='" + placeholder[i] + "'></td>";
       }
       tr = "<tr class='table-row table-row-new'>" + td + "</tr>";
-      $('tbody').append(tr);
+      $('#input-table tbody').append(tr);
       var $lastInput = $('.table-row-new:last td input:last');
       $lastInput.val('All');
-      $('.table-row-new:last input').each(function(i,el){
-        console.log($(el));
-        $(el).addEditableContent();
-      });
+      $('.table-row-new:last input').each(function(){
+        $(this).addEditableContent();
+      })
     })
   }
 
@@ -130,7 +130,7 @@
       var costIsNumber = true;
       $('.table-row-new td input[id*=cost]').each(function(){
         $(this).safeVal();
-        var amount = $(this).val();
+        var amount = $(this).attr('value');
         // Will be called multiple times
         if(!fv.costValidated($(this),amount)) costIsNumber = false;
       })
