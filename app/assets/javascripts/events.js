@@ -192,5 +192,32 @@
     })
   }
 
+  $.fn.appendDeleteRowBtn = function(){
+    var $deleteBtn = $("<span>x</span>");
+    $deleteBtn.addClass('delete-row-btn');
+    this.children('td:last').append($deleteBtn);
+    $('body').on('click','.delete-row-btn',deleteRow);
+  }
+
+  function deleteRow(){
+    var $row = $(this).parents('tr');
+    //update the database using ajax
+    //delete the expense and associated participants
+    var expenseID = parseInt($row.find('input.name').attr('id').match(/[0-9]+/));
+    var data = {id : expenseID};
+    $.post('/expenses/delete',data,function(response){
+      if(response.error){
+        console.log('error message is: ' + response.error);
+      }
+    });
+    //remove the DOM
+    $row.remove();  
+  }
+
+  $.fn.removeDeleteRowBtn = function(){
+    this.children('td:last').find('.delete-row-btn').remove();
+    $('body').off('click','.delete-row-btn',deleteRow);
+  }
+
 })(jQuery)
 

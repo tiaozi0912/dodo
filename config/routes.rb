@@ -6,7 +6,7 @@ Dodo::Application.routes.draw do
   match '/events/:event_id/:token' => 'events#show'
   match '/update_event_name/:event_id' => 'events#update_name'
   match '/calculate/events/:event_id' => 'events#calculate'
-
+  match '/expenses/delete' => 'expenses#destroy'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

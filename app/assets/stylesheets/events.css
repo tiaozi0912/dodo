@@ -32,8 +32,8 @@ h2{
 	line-height:36px;
 }
 p,body,.table td,input{
-  font-size:24px;
-  line-height:36px;
+  font-size:18px;
+  line-height:24px;
   color:#333;
 }
 input{
@@ -87,8 +87,8 @@ table.table td{
 	color:white;
 }
 .table td{
-	padding:15px 0 15px 0px;
-	height:36px;
+	padding:10px 0 10px 0px;
+	height:auto;
 }
 
 .black-gradient{
@@ -125,9 +125,9 @@ table.table td{
 	background-color: rgba(255,255,255,0.3);
 }
 #event_group_tagsinput .tag{
-	font-size:24px;
+	font-size:18px;
 	margin-bottom:0px;
-	height:36px;
+	height:auto;
 }
 .gray{
 	color:#999;
@@ -201,4 +201,17 @@ table.table td{
 }
 #settle p{
 	color:white;;
+}
+#input-table tr.table-row td:last-child{
+  position: relative;
+}
+#input-table .delete-row-btn{
+	position: absolute;
+	top:0px;
+	right:10px;
+	color:#999;
+	cursor: pointer;
+}
+#input-table .delete-row-btn:hover{
+	color:#333;
 }

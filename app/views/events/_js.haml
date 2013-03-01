@@ -6,6 +6,12 @@
 
     //update the event name
     $('#event-name').eventNameWaitForUpdating();
+    //show delete row button when hover over
+    $('#input-table tr.table-row').hover(function(){
+      $(this).appendDeleteRowBtn();
+    },function(){
+      $(this).removeDeleteRowBtn();
+    });
     
     //Add row to the table
     $('.btn-add-row').addRow();
