@@ -215,3 +215,7 @@ table.table td{
 #input-table .delete-row-btn:hover{
 	color:#333;
 }
+span.editable-content{
+	min-width:10px;
+	width:80px;
+}

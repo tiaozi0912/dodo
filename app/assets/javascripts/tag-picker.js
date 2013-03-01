@@ -18,15 +18,12 @@
       $('.tag-picker').find('.row-fluid:last').append(checkboxes);
     }
 
-    function str_safe(str){
-      return str.replace(/[\s]+/,'_');
-    }
-
     $.fn.attachPicker = function(){
       var $selector = this;
       var id = $selector.siblings('input').attr('id');
-      var picker = "<div class='tag-picker' id='" + id + "-tag-picker'><div class='close-picker'>&times;</button></div>";
-      $selector.after(picker);
+      $picker = $("<div class='tag-picker'><div class='close-picker'>&times;</div></div>");
+      $picker.attr('id',id);
+      $selector.after($picker);
       var rows,count = source.length;
       var res =count % settings.perRow;
       rows = parseInt(count / settings.perRow);
@@ -44,7 +41,7 @@
 
     $.fn.preChecked = function(){
       var $selector = this;
-      var val = $selector.html();
+      var val = str_safe($selector.html());
       if(val == "All"){
         $('.tag-picker input').prop('checked',true);
       }else if(val != ''){
@@ -66,9 +63,15 @@
 
   }
 
+  function str_safe(str){
+    return str.replace(/[\s]+/,'_').replace(/&nbsp;/g,'');
+  }
+
   $.fn.saveChangesToInput = function(){
     var content = this.html();
-    this.siblings('input').attr('value',content);
+    if(content){
+      this.siblings('input').attr('value',content);
+    }
   }
 
   $(document).ready(function(){
@@ -88,7 +91,7 @@
     var t = [];
     var n = $('.tag-picker input').length;
     $('.tag-picker input').each(function(){
-      if($(this).is(':checked')) t.push($(this).siblings('span').html());
+      if($(this).is(':checked')) t.push(str_safe($(this).siblings('span').html()));
     });
     return (t.length == n ? 'All' : t.join(','));
   }

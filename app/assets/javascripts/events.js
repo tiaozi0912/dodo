@@ -35,17 +35,18 @@
   }
 
   $.fn.addEditableContent = function(){
-    var s;
     var classname = this.attr('class');
     classname = classname.replace(/invisible/,'').replace(/ /g,'');
+    $editableContent = $("<span class='editable-content' contenteditable='true'></span>");
+    var text = (this.val() == '' ?  this.attr('placeholder') : this.val());
+    $editableContent.addClass(classname).html(text);
     if(this.val() == ''){
-      s = "<span class='editable-content gray " + classname + "' contenteditable='true'>" + this.attr('placeholder') + "</span>";
-    }else{
-      s = "<span class='editable-content " + classname + "' contenteditable='true'>" + this.val() + "</span>";
+      $editableContent.addClass('gray');
     }
-    //console.log(s);
-    this.after(s);
+    this.after($editableContent);
   }
+  
+  
 
   var cols = ['name','cost','user','participant'];
   var placeholder = ['e.x. Tickets','e.x. 80','e.x. Mike','e.x. All'];
@@ -146,14 +147,43 @@
   $.preprocessTable = function(group){
     loadGroup(group);
     $('#input-table').addEditableRows();
-    $('body').on('click','span.editable-content',function(){
+    editableContentInteractive();
+    /*$('body').on('click','span.editable-content',function(){
       var className = $(this).attr('class').replace(/gray/,'');
       $(this).attr('class',className);
-    })
+    })*/
     //save changes in the editable content to the hidden input
     $('body').on('mouseout','.editable-content',function(){
       $(this).saveChangesToInput();
     });
+  }
+
+  //tab in to enter the content, dismiss the placeholder;
+  //tab out somewhere else, if nothing entered, show the placeholder;
+  function editableContentInteractive(){
+    $('body').on('focus','span.editable-content',function(){
+      if($(this).attr('class').match(/gray/) && $(this).needEnterText()){ // check if it is in the new row
+        $(this).html('&nbsp;');
+        //$(this).html('');
+        //remove &nbsp when the user starts to enter text
+      }
+      $(this).removeClass('gray');
+    });
+    $('body').on('blur','span.editable-content',function(){
+      console.log('blur!');
+      var cls = $(this).attr('class');
+      var content = $(this).html().replace(/&nbsp;/,'');
+      if(!content){ //check if any content was entered by the user
+        $(this).addClass('gray');
+        var placeholder = $(this).siblings('input').attr('placeholder');
+        $(this).html(placeholder);
+      }
+    })
+  }
+
+  $.fn.needEnterText = function(){
+    var cls = $(this).attr('class');
+    return (cls.match(/name/) || cls.match(/cost/));
   }
 
   $.fn.addEditableRows = function(){
