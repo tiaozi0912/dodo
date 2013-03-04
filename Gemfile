@@ -1,4 +1,7 @@
-source 'https://rubygems.org'
+#source 'https://rubygems.org'
+
+#deploy on amazon ec2
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.11'
 
