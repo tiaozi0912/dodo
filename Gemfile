@@ -14,6 +14,8 @@ gem 'rails', '3.2.11'
 #deploy on amazon ec2
 gem 'mysql2'
 gem 'aws-sdk'
+gem 'execjs'
+gem 'therubyracer'
 
 
 # Gems used only for assets and not required
