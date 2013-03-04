@@ -51,9 +51,10 @@ test:
   port: 5432
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  database: dodo_production
-  pool: 5
-  username: 
-  password:
+  adapter: mysql2
+  encoding: utf8
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>

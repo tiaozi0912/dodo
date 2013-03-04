@@ -5,7 +5,12 @@ gem 'rails', '3.2.11'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
+#deploy on heroku
+#gem 'pg'
+
+#deploy on amazon ec2
+gem 'mysql2'
+gem 'aws-sdk'
 
 
 # Gems used only for assets and not required
