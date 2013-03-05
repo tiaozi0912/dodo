@@ -53,9 +53,9 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: <%= ENV['RDS_DB_NAME'] %>
+  database: dodo_production
   username: <%= ENV['RDS_USERNAME'] %>
-  #password: <%= ENV['RDS_PASSWORD'] %>
-  password: 'wuyujun0912'
-  host: <%= ENV['RDS_HOSTNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  #password: 'wuyujun0912'
+  host: aa1fg9howacog1x.cfmz4gvshyts.us-east-1.rds.amazonaws.com
   port: <%= ENV['RDS_PORT'] %>
