@@ -57,4 +57,4 @@ production:
   username: portfoliowebsite
   password: wuyujun0912
   host: aa1fg9howacog1x.cfmz4gvshyts.us-east-1.rds.amazonaws.com
-  port: <%= ENV['RDS_PORT'] %>
+  port: 3306
