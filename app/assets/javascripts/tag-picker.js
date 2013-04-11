@@ -64,11 +64,13 @@
   }
 
   function str_safe(str){
-    return str.replace(/[\s]+/,'_').replace(/&nbsp;/g,'');
+    return str.replace(/[\s]+/,'_')
+        .replace(/&nbsp;/g,'')
+        .replace(/<br>/g,'');
   }
 
   $.fn.saveChangesToInput = function(){
-    var content = this.html();
+    var content = str_safe(this.html());
     if(content){
       this.siblings('input').attr('value',content);
     }

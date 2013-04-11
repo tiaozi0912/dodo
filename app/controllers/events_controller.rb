@@ -9,7 +9,7 @@ class EventsController < ApplicationController
     @group = @event.group
     @expenses = @event.expenses
     @users = @event.users
-    @people = @event.settle
+    @people = @event.settle if !@users.empty?
   end
 
   def create

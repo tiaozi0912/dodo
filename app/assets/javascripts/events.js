@@ -170,7 +170,7 @@
       $(this).removeClass('gray');
     });
     $('body').on('blur','span.editable-content',function(){
-      console.log('blur!');
+      //console.log('blur!');
       var cls = $(this).attr('class');
       var content = $(this).html().replace(/&nbsp;/,'');
       if(!content){ //check if any content was entered by the user
