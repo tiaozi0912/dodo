@@ -64,8 +64,8 @@
   }
 
   function str_safe(str){
-    return str.replace(/[\s]+/,'_')
-        .replace(/&nbsp;/g,'')
+    //return //str.replace(/[\s]+/g,'_')
+    return str.replace(/&nbsp;/g,'')
         .replace(/<br>/g,'');
   }
 

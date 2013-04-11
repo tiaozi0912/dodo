@@ -148,12 +148,17 @@
     loadGroup(group);
     $('#input-table').addEditableRows();
     editableContentInteractive();
-    /*$('body').on('click','span.editable-content',function(){
-      var className = $(this).attr('class').replace(/gray/,'');
-      $(this).attr('class',className);
-    })*/
-    //save changes in the editable content to the hidden input
+    /**********************************************************
+     * sync the hidden input and the editable text
+     * save changes in the editable content to the hidden input when:
+     *   mouseout the input
+     *   the input loses focus
+     **********************************************************/
     $('body').on('mouseout','.editable-content',function(){
+      $(this).saveChangesToInput();
+    });
+    $('body').on('blur','.editable-content',function(){
+      console.log($(this).html()+'loses focus.');
       $(this).saveChangesToInput();
     });
   }
@@ -170,9 +175,9 @@
       $(this).removeClass('gray');
     });
     $('body').on('blur','span.editable-content',function(){
-      //console.log('blur!');
       var cls = $(this).attr('class');
-      var content = $(this).html().replace(/&nbsp;/,'');
+      var content = $(this).html().replace(/&nbsp;/,'')
+        .replace(/<br>/g,'');
       if(!content){ //check if any content was entered by the user
         $(this).addClass('gray');
         var placeholder = $(this).siblings('input').attr('placeholder');
