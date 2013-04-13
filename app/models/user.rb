@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def balance event_id
-    paid(event_id) - spent(event_id)
+    ( paid(event_id) - spent(event_id) ).round(2)
   end
   
   def participants_in_event event_id
