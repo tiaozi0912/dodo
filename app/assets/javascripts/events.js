@@ -170,7 +170,7 @@
       if($(this).attr('class').match(/gray/) && $(this).needEnterText()){ // check if it is in the new row
         $(this).html('&nbsp;');
         //$(this).html('');
-        //remove &nbsp when the user starts to enter text
+        //TODO: remove &nbsp when the user starts to enter text
       }
       $(this).removeClass('gray');
     });
