@@ -1,9 +1,14 @@
-.container
+.container{:"ng-app" => "dodo"}
   .page-header
     %h1 
       20 Days 
       %small Where is dodo?
   .timeline-container
+    .posts-container.rpw-fluid
+      .left.span4{:"ng-repeat" => }
+    
+
+
     - @posts.each do |po|
       .post-container.row-fluid
         .left.span4
@@ -15,6 +20,6 @@
         .dot
         .divider
 
-:javascript
-  drawDivider();
+= include_javascript_tag "angular.min"
+= include_javascript_tag "angular-resource.min"
         

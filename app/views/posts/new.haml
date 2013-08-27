@@ -16,6 +16,11 @@
         .controls
           = f.text_field :title, :class => "input-title", :placeholder => "optional", :value => @post.title
       .control-group
+        = f.label :"date", :class => "control-label"
+        .controls
+          - @date = @post.date || DateTime.now
+          = f.text_field :date, :class => "input-date", :value => @date
+      .control-group
         = f.label :"choose a photo", :class => "control-label"
         .controls
           - if @post.has_photo?

@@ -31,4 +31,9 @@ class PostsController < ApplicationController
 		flash[:"alert-success"] = "post was deleted"
 		redirect_to root_path
 	end
+
+	def list
+		@posts = Post.order('date DESC').all
+		render :json => @posts.map {|po| po.info}
+	end
 end

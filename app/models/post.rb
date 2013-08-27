@@ -34,7 +34,8 @@ class Post < ActiveRecord::Base
       :body => body,
       :title => title,
       :thumbnail => photo.url(:medium),
-      :created_at => created_at
+      :created_at => created_at,
+      :date => date
     }
   end
 

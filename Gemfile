@@ -1,7 +1,7 @@
-#source 'https://rubygems.org'
+source 'https://rubygems.org'
 
 #deploy on amazon ec2
-source 'http://rubygems.org'
+#source 'http://rubygems.org'
 
 gem 'rails', '3.2.11'
 
@@ -9,12 +9,12 @@ gem 'rails', '3.2.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 #deploy on heroku
-#gem 'pg'
+gem 'pg'
 
 #deploy on amazon ec2
-gem 'execjs'
-gem 'mysql2'
-gem 'aws-sdk'
+#gem 'execjs'
+#gem 'mysql2'
+#gem 'aws-sdk'
 
 # Gems used only for assets and not required
 # in production environments by default.
