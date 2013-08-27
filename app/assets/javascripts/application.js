@@ -12,10 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui-1.8.23.custom.min.js
+//= require jquery-ui.min
+//= require jstorage
+//= require Underscore
+//= require backbone
 //= require bootstrap.min.js
 //= require jquery.tagsinput.js
 //= require tag-picker.js
 //= require events.js
+//= require pages.js
 
 

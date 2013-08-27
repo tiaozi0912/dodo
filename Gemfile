@@ -40,3 +40,6 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'thin'
 gem 'rufus-scheduler'
+gem 'paperclip',"~> 3.0"
+gem 'aws-s3'
+gem 'aws-sdk','~> 1.5.7'

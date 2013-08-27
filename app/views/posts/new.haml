@@ -1,0 +1,27 @@
+.container.new-edit-post
+  .well
+    .page-header
+      %h2 #{@page_header}
+    = form_for(@post, :html => {:multipart => true, :class => "form-horizontal"}) do |f|
+      .control-group
+        = f.label :"content", :class => "control-label"
+        .controls
+          = f.text_area :body, :class => "input-content", :rows => 4, :value => @post.body, :required => true
+      .control-group
+        = f.label :"my emotion", :class => "control-label"
+        .controls
+          = f.select(:emotion, options_for_select(Post.emotions, @post.emotion))
+      .control-group
+        = f.label :"title", :class => "control-label"
+        .controls
+          = f.text_field :title, :class => "input-title", :placeholder => "optional", :value => @post.title
+      .control-group
+        = f.label :"choose a photo", :class => "control-label"
+        .controls
+          - if @post.has_photo?
+            .span3.img-container
+              = image_tag @post.photo.url(:medium)
+          = f.file_field :photo
+      .control-group
+        .controls
+          = f.submit "#{@button}", :class => "btn btn-primary"
