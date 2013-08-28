@@ -1,4 +1,4 @@
-.container
+.container.relative-position
   - if current_user.nil?
     .well
       .page-header 
@@ -8,6 +8,10 @@
       = render :partial => "sessions/new"
 
   - else
+    - if me?
+      %a.btn.btn-primary.btn-new-post{:href => "#{new_posts_path}"}
+        %i.icon-pencil
+        New post
     .page-header.timer-container
       %h1 
         <span class="timer">0</span> Days 
@@ -22,13 +26,26 @@
             - else 
               .post-date.muted.alone #{formatted_date(po.date)}
           .right.span8
-            .muted #{po.date}
+            %small.muted #{po.date.localtime.strftime("%a %F")}
             %p #{po.body}
           .dot
           .divider
+          - if me?
+            %a.btn.btn-edit-post.hide{:href => "#{edit_post_path(po)}"}
+              %i.icon-edit
+
+
           
 
 :javascript
   drawDivider();
   $('.timer').timer();
+
+  $('.post-container').hover(function(e) {
+    var target = e.currentTarget;
+    $(target).find('.btn-edit-post').stop(true, true).show();
+  }, function(e) {
+    var target = e.currentTarget;
+    $(target).find('.btn-edit-post').stop(true, true).hide();
+  })
         

@@ -17,7 +17,7 @@
 	display: none;
 }
 body{
-  /*background-image: url('/images/bedge_grunge.png');*/
+  /*background-image: url('/img/bedge_grunge.png');*/
   background-color: #fff;
 }
 h1, h2, h3, h4, h5, h6 {
@@ -138,8 +138,8 @@ table.table td{
 }
 /* home css */
 #home{
-	/*background-image:url('/images/blue_background.jpg');
-	background-size: cover;*/
+	background-image:url('/img/blue_background.jpg');
+	background-size: cover;
 }
 #home .sub-container{
 	padding:150px;

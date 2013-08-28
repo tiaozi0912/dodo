@@ -16,7 +16,7 @@ $.fn.timer = function() {
 
 	function display($container) {
     var now = moment();
-	  var diff = now.diff(baseMoment, 'days');
+	  var diff = Math.ceil(now.diff(baseMoment, 'days', true));
 
 	  $container.html(diff);
 	}
