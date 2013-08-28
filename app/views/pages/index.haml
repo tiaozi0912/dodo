@@ -12,11 +12,12 @@
       %a.btn.btn-primary.btn-new-post{:href => "#{new_posts_path}"}
         %i.icon-pencil
         New post
+      %a.btn.btn-back-top{:href => "#timeline-container"} Back to top
     .page-header.timer-container
       %h1 
         <span class="timer">0</span> Days 
         %small Where is dodo?
-    .timeline-container
+    .timeline-container#timeline-container
       - @posts.each do |po|
         .post-container.row-fluid
           .left.span4
@@ -33,9 +34,6 @@
           - if me?
             %a.btn.btn-edit-post.hide{:href => "#{edit_post_path(po)}"}
               %i.icon-edit
-
-
-          
 
 :javascript
   drawDivider();
