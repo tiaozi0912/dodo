@@ -8,12 +8,25 @@ function drawDivider() {
 	});
 }
 
-var baseDay = "2013-08-03 12:00:00 -0700";
-var baseMoment = moment(baseDay);
+window.baseDay = "2013-08-03 23:59:59 -0700";
+window.baseMoment = moment(baseDay);
 
-setTimeout(function() {
-  var now = moment();
-  var diff = now.diff(baseMoment, 'days');
+$.fn.timer = function() {
+  var interval = 60 * 1000; // per min
 
-  $('.days-container .days').html(diff);
-}, 60 * 1000);
+	function display($container) {
+    var now = moment();
+	  var diff = now.diff(baseMoment, 'days');
+
+	  $container.html(diff);
+	}
+
+  return $(this).each(function() {
+    $timer = $(this);
+    display($timer);
+
+    setTimeInterval(function() {
+    	display($timer);
+    }, inverval); 
+  });
+}

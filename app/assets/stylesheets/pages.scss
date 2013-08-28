@@ -4,29 +4,49 @@
 	box-sizing: border-box; 
 }
 
+.timer-container {
+	width: 640px;
+	margin: 0 auto 20px;
+  padding: 50px 0;
+	
+	h1 {
+		font-size: 80px;
+		line-height: 1.1em;
+
+		small {
+			font-size: 0.35em;
+			line-size: 0.5em;
+		}
+	}
+}
+
 .timeline-container {
-	width: 600px;
+	width: 640px;
 	margin: 0 auto;
   
   $imageSize: 150px;
 
-	$left: 180px;
+	$left: 195px;
   $top: $imageSize;
   $dividerWidth: 2px;
   $dotRadius: 7px;
   $dotBorder: 5px;
 
+  $postPadding: 20px;
+
 	.post-container {
-		padding-bottom: 30px;
+		padding: $postPadding;
 		position: relative;
+    
+    &:hover {
+    	background-color: #dff0d8;
+    }
 
 		.left {
+
 			img {
 				width: $imageSize;
 				height: $imageSize;
-			}
-			.date {
-				font-size: 0.7em;
 			}
 		}
 
@@ -49,13 +69,24 @@
 		.dot {
 			position: absolute;
 			left: $left + $dividerWidth / 2 - $dotRadius;
-			top: $top - $dotRadius;
+			top: $top + $postPadding - $dotRadius;
 			width: $dotRadius * 2;
 			height: $dotRadius * 2;
       border-radius: $dotRadius;
       background-color: white;
       border: solid $dotBorder gray;
       z-index: 10;
+		}
+
+		.post-date {
+			font-size: 0.7em;
+			position: absolute;
+			bottom: 35px;
+			right: 470px;
+
+			&.alone {
+				bottom: 50px;
+			}
 		}
 	}
 }

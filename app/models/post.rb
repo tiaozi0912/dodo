@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessible :title, :body, :emotion, :photo
+  attr_accessible :title, :body, :emotion, :photo, :date
 
   has_attached_file :photo,
                       :styles => { :thumbnail => "50x50#",
@@ -36,6 +36,10 @@ class Post < ActiveRecord::Base
       :thumbnail => photo.url(:medium),
       :created_at => created_at
     }
+  end
+
+  def self.base_day
+    Time.parse("2013-08-03 23:59:59 -0700")
   end
 
 end

@@ -8,9 +8,9 @@
       = render :partial => "sessions/new"
 
   - else
-    .page-header.days-container
+    .page-header.timer-container
       %h1 
-        <span class="days">20</span> Days 
+        <span class="timer">0</span> Days 
         %small Where is dodo?
     .timeline-container
       - @posts.each do |po|
@@ -18,12 +18,17 @@
           .left.span4
             - if po.has_photo?
               = image_tag po.photo.url(:medium), :class => "image-rounded"
-            .date.muted #{formatted_date(po.created_at)}
+              .post-date.muted #{formatted_date(po.date)}
+            - else 
+              .post-date.muted.alone #{formatted_date(po.date)}
           .right.span8
+            .muted #{po.date}
             %p #{po.body}
           .dot
           .divider
+          
 
 :javascript
   drawDivider();
+  $('.timer').timer();
         

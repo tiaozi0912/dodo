@@ -16,10 +16,11 @@
 //= require jstorage
 //= require Underscore
 //= require backbone
-//= require bootstrap.min.js
-//= require jquery.tagsinput.js
-//= require tag-picker.js
-//= require events.js
-//= require pages.js
+//= require bootstrap.min
+//= require moment.min
+//= require jquery.tagsinput
+//= require tag-picker
+//= require events
+//= require pages
 
 

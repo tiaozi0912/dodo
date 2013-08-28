@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
 	def index
-		@posts = Post.order("created_at DESC").all
+		@posts = Post.order("date DESC").all
 	end
 end
