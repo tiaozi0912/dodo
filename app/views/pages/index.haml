@@ -1,19 +1,28 @@
 .container
-  .page-header
-    %h1 
-      20 Days 
-      %small Where is dodo?
-  .timeline-container
-    - @posts.each do |po|
-      .post-container.row-fluid
-        .left.span4
-          - if po.has_photo?
-            = image_tag po.photo.url(:medium), :class => "image-rounded"
-          .date.muted #{formatted_date(po.created_at)}
-        .right.span8
-          %p #{po.body}
-        .dot
-        .divider
+  - if current_user.nil?
+    .well
+      .page-header 
+        %h1 
+          Love like never be hurt
+          %small Where is dodo?
+      = render :partial => "sessions/new"
+
+  - else
+    .page-header.days-container
+      %h1 
+        <span class="days">20</span> Days 
+        %small Where is dodo?
+    .timeline-container
+      - @posts.each do |po|
+        .post-container.row-fluid
+          .left.span4
+            - if po.has_photo?
+              = image_tag po.photo.url(:medium), :class => "image-rounded"
+            .date.muted #{formatted_date(po.created_at)}
+          .right.span8
+            %p #{po.body}
+          .dot
+          .divider
 
 :javascript
   drawDivider();

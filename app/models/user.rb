@@ -59,4 +59,14 @@ class User < ActiveRecord::Base
     return s
   end
 
+  def self.auth p
+    password[p]
+  end
+
+  def self.password
+    {
+      "I like dodo" => "Yujun",
+      "I am dodo" => "Dodo"
+    }
+  end
 end

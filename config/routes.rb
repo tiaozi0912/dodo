@@ -2,6 +2,7 @@ Dodo::Application.routes.draw do
   resources :events, :only => [:create,:update]
   resources :users, :only => :create
   resources :posts
+  resources :sessions, :only => :create
   
   #root :to => 'events#home'
   root :to => "pages#index"

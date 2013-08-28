@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (3.2.11)
       actionpack (= 3.2.11)
@@ -69,13 +69,13 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.24)
     multi_json (1.7.9)
-    mysql2 (0.3.13)
     nokogiri (1.5.10)
     paperclip (3.5.1)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.0)
       mime-types
+    pg (0.16.0)
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -141,11 +141,10 @@ DEPENDENCIES
   aws-s3
   aws-sdk
   coffee-rails (~> 3.2.1)
-  execjs
   haml
   jquery-rails
-  mysql2
   paperclip (~> 3.0)
+  pg
   rails (= 3.2.11)
   rufus-scheduler
   sass-rails (~> 3.2.3)
