@@ -25,7 +25,9 @@
             .left.span4
               - if po.has_photo?
                 = image_tag po.photo.url(:medium), :class => "image-rounded"
-              .post-date.muted #{formatted_date(po.date)}
+              .post-date
+                %span #{diff_in_days(po.date)} days.
+                %span.muted #{time_str(po.date)}
             .right.span8
               .wrapper
                 %small.muted #{po.date.localtime.strftime("%a %F")}
