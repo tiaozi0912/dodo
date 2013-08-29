@@ -18,6 +18,7 @@
         %a.btn.btn-primary.btn-new-post{:href => "#{new_post_path}"}
           %i.icon-pencil.icon-white
           New post
+      %a.btn.btn-back-top{:href => "#timeline-container"} Back to top
       .timeline-container
         - @posts.each do |po|
           - @has_photo = (po.has_photo? ? "with-photo" : "no-photo")
@@ -37,9 +38,6 @@
             - if me?
               %a.btn.btn-edit-post.hide{:href => "#{edit_post_path(po)}"}
                 %i.icon-edit
-
-
-          
 
 :javascript
   drawDivider();
