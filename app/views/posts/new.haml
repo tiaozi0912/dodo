@@ -12,6 +12,12 @@
         .controls
           = f.select(:emotion, options_for_select(Post.emotions, @post.emotion))
       .control-group
+        = f.label :"date", :class => "control-label"
+        .controls
+          - @date = @post.date || Time.now
+          - @date = @date.to_s
+          = f.text_field :date, :class => "input-date", :placeholder => "optional", :value => @date
+      .control-group
         = f.label :"title", :class => "control-label"
         .controls
           = f.text_field :title, :class => "input-title", :placeholder => "optional", :value => @post.title
@@ -25,3 +31,4 @@
       .control-group
         .controls
           = f.submit "#{@button}", :class => "btn btn-primary"
+          = link_to "cancel", root_path

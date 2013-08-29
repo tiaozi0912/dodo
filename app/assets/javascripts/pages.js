@@ -25,8 +25,8 @@ $.fn.timer = function() {
     $timer = $(this);
     display($timer);
 
-    setTimeInterval(function() {
+    setInterval(function() {
     	display($timer);
-    }, inverval); 
+    }, interval); 
   });
 }

@@ -1,38 +1,41 @@
-.container.relative-position
+.posts
   - if current_user.nil?
-    .well
-      .page-header 
-        %h1 
-          Love like never be hurt
-          %small Where is dodo?
-      = render :partial => "sessions/new"
+    .container
+      .well
+        .page-header 
+          %h1 
+            Love like never be hurt
+            %small Where is dodo?
+        = render :partial => "sessions/new"
 
   - else
-    - if me?
-      %a.btn.btn-primary.btn-new-post{:href => "#{new_posts_path}"}
-        %i.icon-pencil
-        New post
     .page-header.timer-container
-      %h1 
-        <span class="timer">0</span> Days 
-        %small Where is dodo?
-    .timeline-container
-      - @posts.each do |po|
-        .post-container.row-fluid
-          .left.span4
-            - if po.has_photo?
-              = image_tag po.photo.url(:medium), :class => "image-rounded"
+      .wrapper
+        %h1.muted
+          <span class="timer">0</span> Days 
+          %small Where is dodo?
+    .container.relative-position
+      - if me?
+        %a.btn.btn-primary.btn-new-post{:href => "#{new_post_path}"}
+          %i.icon-pencil.icon-white
+          New post
+      .timeline-container
+        - @posts.each do |po|
+          - @has_photo = (po.has_photo? ? "with-photo" : "no-photo")
+          %div{:class => "post-container row-fluid #{@has_photo}"}
+            .left.span4
+              - if po.has_photo?
+                = image_tag po.photo.url(:medium), :class => "image-rounded"
               .post-date.muted #{formatted_date(po.date)}
-            - else 
-              .post-date.muted.alone #{formatted_date(po.date)}
-          .right.span8
-            %small.muted #{po.date.localtime.strftime("%a %F")}
-            %p #{po.body}
-          .dot
-          .divider
-          - if me?
-            %a.btn.btn-edit-post.hide{:href => "#{edit_post_path(po)}"}
-              %i.icon-edit
+            .right.span8
+              .wrapper
+                %small.muted #{po.date.localtime.strftime("%a %F")}
+                %p #{po.body}
+            .dot
+            .divider
+            - if me?
+              %a.btn.btn-edit-post.hide{:href => "#{edit_post_path(po)}"}
+                %i.icon-edit
 
 
           

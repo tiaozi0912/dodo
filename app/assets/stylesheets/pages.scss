@@ -4,46 +4,79 @@
 	box-sizing: border-box; 
 }
 
+header {
+	height: 7px;
+	width: 100%;
+	background-color: rgb(50, 50, 50);
+	position: fixed;
+	top: 0;
+	z-index: 100;
+}
+
+.posts {
+	.btn {
+		font-size: 13px;
+		line-height: 18px;
+	}
+}
+
 .relative-position {
 	position: relative;
 }
 
 .timer-container {
-	width: 640px;
-	margin: 0 auto 20px;
+	position: fixed;
+  top: 7px;
+  width: 100%;
+  background-color: rgb(250,250,250);
+  margin: 0 auto;
   padding: 50px 0;
+  z-index: 100;
+
+  .wrapper {
+  	width: 640px;
+  	margin: 0 auto;
+  }
 	
 	h1 {
-		font-size: 80px;
-		line-height: 1.1em;
+		font-size: 60px;
+		line-height: 1em;
 
 		small {
 			font-size: 0.35em;
 			line-size: 0.5em;
 		}
 	}
+
+	.timer {
+		color: white;
+		padding: 20px;
+		background-color: rgb(50, 50, 50);
+	}
 }
 
+$imageSize: 150px;
+
+$pageTop: 182px;
+
+$left: 195px;
+$top: $imageSize;
+$dividerWidth: 2px;
+$dotRadius: 7px;
+$dotBorder: 5px;
+
+$postPadding: 20px;
+
 .timeline-container {
-	width: 640px;
-	margin: 0 auto;
-  
-  $imageSize: 150px;
-
-	$left: 195px;
-  $top: $imageSize;
-  $dividerWidth: 2px;
-  $dotRadius: 7px;
-  $dotBorder: 5px;
-
-  $postPadding: 20px;
+  width: 640px;
+	margin: $pageTop auto 0;
 
 	.post-container {
 		padding: $postPadding;
 		position: relative;
     
     &:hover {
-    	background-color: #dff0d8;
+    	background-color: rgba(10,10,10, 0.1);
     }
 
 		.left {
@@ -55,10 +88,17 @@
 		}
 
 		.right {
-			p {
-				margin-top: $imageSize - 20px;
-				padding: 15px;
-				background-color: #f5f5f5;
+			.wrapper {
+				margin-top: $imageSize - 45px;
+
+				p {
+					padding: 15px;
+				  background-color: #f5f5f5;
+				}
+
+				small {
+					font-size: 0.7em;
+				}
 			}
 		}
 
@@ -85,19 +125,33 @@
 		.post-date {
 			font-size: 0.7em;
 			position: absolute;
-			bottom: 35px;
+			top: $top + $postPadding + 5px;
 			right: 470px;
+		}
 
-			&.alone {
-				bottom: 50px;
-			}
+		&.no-photo {
+			$dotTop:  55px;
+
+			.post-date {
+			  top: $dotTop - 5px;
+		  }
+
+		  .dot {
+		  	top: $dotTop;
+		  }
+
+		  .right {
+		  	.wrapper {
+		  		margin-top: 0;
+		  	}
+		  }
 		}
 	}
 }
 
 .btn-new-post {
 	position: fixed;
-	top: 100px;
+	top: $pageTop + 20px;
   right: 100px;
 }
 

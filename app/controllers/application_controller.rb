@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   include EventsHelper
 
   helper_method :formatted_date
-  helper_method :current_user
+  helper_method :current_user, :me?
 
   def participants_to_s e
   	e.participants_to_s
