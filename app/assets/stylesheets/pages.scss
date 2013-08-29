@@ -4,6 +4,18 @@
 	box-sizing: border-box; 
 }
 
+$imageSize: 150px;
+
+$pageTop: 182px;
+
+$left: 195px; //left for the line and dot
+$top: $imageSize; //top for the dot
+$dividerWidth: 2px;
+$dotRadius: 7px;
+$dotBorder: 5px;
+
+$postPadding: 20px;
+
 header {
 	height: 7px;
 	width: 100%;
@@ -20,8 +32,42 @@ header {
 	}
 }
 
+.container[role=main] {
+  margin-top: $pageTop;
+}
+
 .relative-position {
 	position: relative;
+}
+
+.signin-container {
+  width: 640px;
+  margin: 0 auto;
+  color: #ccc;
+
+  .heading {
+  	margin: 40px 0;
+  }
+
+  input[name="session[password]"] {
+    display: block;
+    height: 44px;
+    padding: 10px 4px;
+    width: 300px;
+  }
+
+  input[type=submit] {
+  	border-width: 0;
+  	background-image: none;
+  	color: white;
+  	text-shadow: none;
+  }
+
+  .text-hint {
+  	margin-bottom: 5px;
+  	//color: rgb(46,126,255);
+  	font-size: 0.8em;
+  }
 }
 
 .timer-container {
@@ -55,21 +101,9 @@ header {
 	}
 }
 
-$imageSize: 150px;
-
-$pageTop: 182px;
-
-$left: 195px;
-$top: $imageSize;
-$dividerWidth: 2px;
-$dotRadius: 7px;
-$dotBorder: 5px;
-
-$postPadding: 20px;
-
 .timeline-container {
   width: 640px;
-	margin: $pageTop auto 0;
+	margin: 0 auto;
 
 	.post-container {
 		padding: $postPadding;

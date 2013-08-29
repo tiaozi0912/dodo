@@ -1,20 +1,19 @@
 .posts
+  .page-header.timer-container
+    .wrapper
+      %h1.muted
+        <span class="timer">0</span> Days 
+        %small Where is dodo?
+  
   - if current_user.nil?
-    .container
-      .well
-        .page-header 
-          %h1 
-            Love like never be hurt
-            %small Where is dodo?
+    .container{:role => "main"}
+      .signin-container
+        .heading
+          %h1 Love like never be hurt 
         = render :partial => "sessions/new"
 
   - else
-    .page-header.timer-container
-      .wrapper
-        %h1.muted
-          <span class="timer">0</span> Days 
-          %small Where is dodo?
-    .container.relative-position
+    .container.relative-position{:role => "main"}
       - if me?
         %a.btn.btn-primary.btn-new-post{:href => "#{new_post_path}"}
           %i.icon-pencil.icon-white

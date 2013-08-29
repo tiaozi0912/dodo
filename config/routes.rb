@@ -2,7 +2,7 @@ Dodo::Application.routes.draw do
   resources :events, :only => [:create,:update]
   resources :users, :only => :create
   resources :posts
-  resources :sessions, :only => :create
+  resources :sessions, :only => [:create]
   
   #root :to => 'events#home'
   root :to => "pages#index"
@@ -10,6 +10,8 @@ Dodo::Application.routes.draw do
   match '/update_event_name/:event_id' => 'events#update_name'
   match '/calculate/events/:event_id' => 'events#calculate'
   match '/expenses/delete' => 'expenses#destroy'
+
+  match '/signout' => 'sessions#destroy'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

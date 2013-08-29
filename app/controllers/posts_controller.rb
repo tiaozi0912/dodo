@@ -22,7 +22,7 @@ class PostsController < ApplicationController
 		@post = Post.find_by_id params[:id]
 		@post.update_attributes params[:post]
 		flash[:"alert-success"] = "post was updated"
-		redirect_to edit_post_path(@post)
+		redirect_to root_path
 	end
 
 	def delete
