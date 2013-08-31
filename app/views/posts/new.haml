@@ -14,9 +14,7 @@
       .control-group
         = f.label :"date", :class => "control-label"
         .controls
-          - @date = @post.date || Time.now
-          - @date = @date.to_s
-          = f.text_field :date, :class => "input-date", :placeholder => "optional", :value => @date
+          = f.text_field :date, :class => "input-date"
       .control-group
         = f.label :"title", :class => "control-label"
         .controls
@@ -34,3 +32,13 @@
           - if !@post.nil? && !@post.id.nil?
             = link_to "delete", post_path(@post), :method => "delete", :class => "btn btn-danger"
           = link_to "cancel", root_path
+
+:javascript
+  //var date = moment("#{@date.to_s}").local().format('MM-DD-YYYY');
+  var date = moment("#{@date.to_s}").local().format();
+
+  $('.input-date').val(date);
+
+  $('.input-date').datepicker({
+    format: 'mm-dd-yyyy'
+  });

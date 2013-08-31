@@ -11,6 +11,7 @@
  *= require_self
  *= require bootstrap.min.css
  *= require bootstrap-responsive.min.css
+ *= require bootstrap-datepicker
  *= require events.css
  *= require jquery.tagsinput.css
  *= require tag-picker.css

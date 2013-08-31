@@ -22,5 +22,6 @@
 //= require tag-picker
 //= require events
 //= require pages
+//= require bootstrap-datepicker
 
 

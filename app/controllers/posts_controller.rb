@@ -3,12 +3,14 @@ class PostsController < ApplicationController
 		@page_header = "New post"
 		@button = "create"
     @post = Post.new
+    @date = Time.now
 	end
 
 	def edit
 		@page_header = "Edit post"
 		@button = "save"
     @post = Post.find_by_id params[:id]
+    @date = @post.date
     render "new"
 	end
 
