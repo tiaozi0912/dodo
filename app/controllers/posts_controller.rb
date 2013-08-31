@@ -25,7 +25,7 @@ class PostsController < ApplicationController
 		redirect_to root_path
 	end
 
-	def delete
+	def destroy
 		@post = Post.find_by_id params[:id]
 		@post.destroy
 		flash[:"alert-success"] = "post was deleted"
