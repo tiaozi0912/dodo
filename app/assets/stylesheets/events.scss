@@ -47,12 +47,12 @@ input{
 #event-name-section{
 	background-color:rgb(94,155,252);
 	padding:50px 0 50px 0px;
-	border-bottom:1px solid #666;
+	color: white;
 }
 .shadow{
-	-webkit-box-shadow: 0 1px 4px #666;
-	box-shadow: 0 1px 4px #666;
-	-moz-box-shadow: 0 1px 4px #666;
+	-webkit-box-shadow: 0 1px 2px 0 rgba(120, 121, 122, 0.5);
+	box-shadow: 0 1px 2px 0 rgba(120, 121, 122, 0.5);
+	-moz-box-shadow: 0 1px 2px 0 rgba(120, 121, 122, 0.5);
 }
 .dark-blue{
 	color: rgb(50,123,253);
@@ -222,4 +222,12 @@ table.table td{
 span.editable-content{
 	min-width:10px;
 	width:80px;
+}
+
+.tagsinput {
+	input {
+		box-shadow: none;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+	}
 }

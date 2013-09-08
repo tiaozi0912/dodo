@@ -1,16 +1,16 @@
 .page
   = form_for(@event, :multipart => true, :html => {:method => 'put'}) do |f|
 
-    %section#event-name-section.shadow
+    %section#event-name-section
       .container
-        %h1#event-name.dark-blue.pressed{:contenteditable => 'true'} #{@event.name}
+        %h1#event-name{:contenteditable => 'true'} #{@event.name}
         = f.text_field :name, :value => "#{@event.name}",:class => 'invisible'
     
     %section#event-section
       .container
         -# the group input is tricky
         %label#group-label
-          %h2.coffee.pressed Group:
+          %h2 Group:
         %input.invisible{:name => "event[group]",:type => 'text',:id => 'event_group'}
         %br
         %table.table#input-table.shadow

@@ -3,8 +3,8 @@ Dodo::Application.routes.draw do
   resources :users, :only => :create
   resources :posts
   resources :sessions, :only => [:create]
-  
-  #root :to => 'events#home'
+ 
+  match "/home" => 'events#home'
   root :to => "pages#index"
   match '/events/:event_id/:token' => 'events#show'
   match '/update_event_name/:event_id' => 'events#update_name'
