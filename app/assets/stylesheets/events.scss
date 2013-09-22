@@ -1,5 +1,5 @@
 .page{
-	margin:0px 0px 40px 0px;
+	margin:7px 0px 40px 0px;
 }
 .disabled{
   color:#ccc;
@@ -224,10 +224,11 @@ span.editable-content{
 	width:80px;
 }
 
-.tagsinput {
+.page .tagsinput {
 	input {
 		box-shadow: none;
 		-webkit-box-shadow: none;
 		-moz-box-shadow: none;
+		margin-bottom: 0;
 	}
 }

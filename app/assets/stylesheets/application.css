@@ -12,9 +12,10 @@
  *= require bootstrap.min.css
  *= require bootstrap-responsive.min.css
  *= require bootstrap-datepicker
- *= require events.css
- *= require jquery.tagsinput.css
- *= require tag-picker.css
+ *= require events
+ *= require jquery.tagsinput
+ *= require tag-picker
  *= require posts
  *= require pages
+ *= require responsive
  */

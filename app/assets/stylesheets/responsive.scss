@@ -1,0 +1,30 @@
+@media (max-width:767px) {
+	body {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.container {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+}
+
+@media (max-width: 480px) {
+	body, .page table td, .page table th, h1, h2, h4, h4, h5, h6, a, p, span, i, b, strong, input,.btn {
+		font-size: 14px;
+		line-height: 1.2em;
+	}
+
+	#event-name-section {
+		padding: 10px 0;
+	}
+
+	#event-section {
+		margin-top: 10px;
+	}
+
+	#event_group_tagsinput {
+		padding: 5px;
+	}
+}
