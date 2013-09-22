@@ -5,7 +5,7 @@ class EventsController < ApplicationController
 	end
 
   def show
-    @event = Event.find(params[:event_id])
+    @event = Event.find_by_uuid(params[:uuid])
     @group = @event.group
     @expenses = @event.expenses
     @users = @event.users
@@ -13,10 +13,10 @@ class EventsController < ApplicationController
   end
 
   def create
-    token = Event.token
-    params[:event][:url] = token
+    @uuid = Event.uuid
+    params[:event][:uuid] = @uuid
     @event = Event.create(params[:event])
-    redirect_to "/events/#{@event.id}/#{token}"
+    redirect_to event_path(@uuid)
   end
 
   def update
@@ -27,7 +27,7 @@ class EventsController < ApplicationController
         k.to_i <= 0 ? @event.build_expense(k,v) : @event.update_expense(k,v)
       end
     end
-    redirect_to "/events/#{@event.id}/#{@event.url}"
+    redirect_to event_path(@event.uuid)
   end
 
   def update_name

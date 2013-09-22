@@ -1,12 +1,10 @@
 class Event < ActiveRecord::Base
-  attr_accessible :name, :url
+  attr_accessible :name, :uuid
   has_and_belongs_to_many :users
   has_many :expenses, :dependent => :destroy
 
-  def self.token
-    token = make_salt
-    count = 15
-    token[0..count]
+  def self.uuid
+    token = (Digest::MD5.hexdigest "#{SecureRandom.hex(10)}-#{DateTime.now.to_s}")
   end
 
   # get the array containing the names of the people in the group

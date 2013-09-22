@@ -6,7 +6,7 @@ Dodo::Application.routes.draw do
  
   match "/home" => 'events#home'
   root :to => "pages#index"
-  match '/events/:event_id/:token' => 'events#show'
+  match '/events/:uuid' => 'events#show'
   match '/update_event_name/:event_id' => 'events#update_name'
   match '/calculate/events/:event_id' => 'events#calculate'
   match '/expenses/delete' => 'expenses#destroy'

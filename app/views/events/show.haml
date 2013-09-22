@@ -1,5 +1,5 @@
 .page
-  = form_for(@event, :multipart => true, :html => {:method => 'put'}) do |f|
+  = form_for(@event, :multipart => true, :url => "/events/#{@event.id}") do |f|
 
     %section#event-name-section
       .container
