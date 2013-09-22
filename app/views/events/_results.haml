@@ -11,7 +11,7 @@
               %span.name.dark-blue #{@debtor.username}
               %span should pay
               %span.name.dark-blue #{@creditor.username} 
-              %span $#{amount}
+              %span $#{(amount * 10).round / 10.0}
   %section.results.container
     %table.table.shadow#result-table
       %thead.green-gradient
