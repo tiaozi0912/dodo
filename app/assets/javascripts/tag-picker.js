@@ -47,7 +47,7 @@
       }else if(val != ''){
         var names = val.split(',');
         for(i=0;i<names.length;i++){
-          var s = ".tag-picker #"+str_safe(names[i])+"";
+          var s = ".tag-picker #"+str_safe(names[i]);
           $(s).prop('checked',true);
         }
       }
@@ -64,9 +64,9 @@
   }
 
   function str_safe(str){
-    //return //str.replace(/[\s]+/g,'_')
     return str.replace(/&nbsp;/g,'')
-        .replace(/<br>/g,'');
+        .replace(/<br>/g,'')
+        .replace(/[\s]+/g, '_');
   }
 
   $.fn.saveChangesToInput = function(){
