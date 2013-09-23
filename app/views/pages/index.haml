@@ -27,7 +27,7 @@
               - if po.has_photo?
                 = image_tag po.photo.url(:medium), :class => "image-rounded"
               .post-date
-                %span #{diff_in_days(po.date)} days.
+                %span <b class="day-count">#{diff_in_days(po.date)}</b> days.
                 %span.muted #{time_str(po.date)}
             .right.span8
               .wrapper
@@ -50,4 +50,6 @@
     var target = e.currentTarget;
     $(target).find('.btn-edit-post').stop(true, true).hide();
   })
+
+  scrollSpy();
         

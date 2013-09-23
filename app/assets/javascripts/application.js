@@ -23,5 +23,6 @@
 //= require events
 //= require pages
 //= require bootstrap-datepicker
+//= require posts
 
 
