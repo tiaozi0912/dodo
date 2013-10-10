@@ -93,10 +93,11 @@ header {
 	h1 {
 		font-size: 60px;
 		line-height: 1em;
+		display: inline-block;
 
 		small {
 			font-size: 0.35em;
-			line-size: 0.5em;
+			line-height: 0.5em;
 		}
 	}
 

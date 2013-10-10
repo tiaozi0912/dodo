@@ -44,4 +44,75 @@
 		right: 0;
 		width: 150px;
 	}
+
+	//for dodo posts
+	.posts {
+    .timer-container {
+			padding-top: 0;
+			padding-bottom: 20px;
+
+	    h1 {
+	    	line-height: 30px;
+
+	    	span {
+	    		font-size: 24px;
+	    	}
+
+	    	small {
+	    		font-size: 14px;
+	    	}
+	    }
+		}
+
+		.timeline-container {
+			width: auto;
+
+			.left, .right {
+				padding-left: 20px;
+			}
+
+		  .divider {
+		  	left: 10px;
+		  }
+
+		  .dot {
+		  	left: 5px;
+		  }
+
+		  .post-date {
+		  	right:auto;
+		  	left: 40px;
+		  }
+
+		  .right .wrapper {
+		  	small {
+		  		float: right;
+		  	}
+
+		  	p {
+		  		clear: both;
+		  	}
+
+				margin-top: 10px !important;
+			}
+		}
+
+		.btn-back-top, .btn-new-post {
+			display: none;
+		}
+	}
+}
+
+@media (max-width:480px) {
+	.posts {
+		.timer-container {
+			padding-bottom: 5px;
+			
+			small {
+				margin-top: 5px;
+				margin-left: 85px;
+				white-space: nowrap;
+			}
+		}
+	}
 }

@@ -69,3 +69,20 @@ function scrollSpy() {
 		return $post.find('b.day-count').html();
 	}
 }
+
+//center the page header
+$(document).ready(function() {
+	function centerPageHeader() {
+		var $container = $('.timer-container .wrapper'),
+      width = $container.find('h1').innerWidth();
+    $container.width(width);
+	}
+  
+  function positionMainContent() {
+  	var top = $('header').innerHeight() + $('.timer-container').innerHeight();
+  	$('.posts .container[role=main]').css('marginTop', top);
+  }
+
+  centerPageHeader();
+  positionMainContent();
+});
