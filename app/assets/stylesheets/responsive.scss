@@ -47,6 +47,17 @@
 
 	//for dodo posts
 	.posts {
+		//landing page
+	  .signin-container {
+	  	.heading h1 {
+	  		font-size: 2em;
+	  	}
+
+	  	.text-hint {
+	  		font-size: 1em;
+	  	}
+	  }
+
     .timer-container {
 			padding-top: 0;
 			padding-bottom: 20px;
@@ -84,6 +95,10 @@
 		  	left: 40px;
 		  }
 
+		  .post-container:hover {
+		  	background: none;
+		  }
+
 		  .right .wrapper {
 		  	small {
 		  		float: right;
@@ -98,8 +113,20 @@
 		}
 
 		.btn-back-top, .btn-new-post {
-			//display: none;
+			z-index: 1000;
+			opacity: 0.9;
 		}
+
+		.btn-new-post {
+			bottom: 20px;
+			right: 20px;
+			top:auto;
+		}
+    
+    .btn-back-top {
+    	bottom: 20px;
+    	left: 30px;
+    }
 	}
 }
 

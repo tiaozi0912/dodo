@@ -15,14 +15,20 @@ class Post < ActiveRecord::Base
     attachment.instance.created_at
   end
 
+  def self.emotions_map
+  	{
+  		"sad" => "rgb(128, 128, 128)", #gray
+  		"very sad" => "#323232", #black
+  		"happy"=> "#62c462", #green
+  		"very happy" => "rgb(250, 0, 0)", #red
+  		"nothing" => "rgb(0, 0, 250)", #blue
+  	}
+  end
+
   def self.emotions
-  	[
-  		"sad",
-  		"very sad",
-  		"happy",
-  		"very happy",
-  		"nothing"
-  	]
+    arr = []
+    emotions_map.each {|k, v| arr << k}
+    return arr
   end
 
   def has_photo?
