@@ -25,7 +25,17 @@
           %div{:class => "post-container row-fluid #{@has_photo}"}
             .left.span4
               - if po.has_photo?
-                = image_tag po.photo.url(:medium), :class => "image-rounded"
+                .img{:class => "img-#{po.id}"}
+                :css
+                  .img-#{po.id} {
+                    background-image:url(#{po.photo.url(:medium)});
+                  }
+                  @media (max-width:480px) {
+                    .img-#{po.id} {
+                      background-image:url(#{po.photo.url(:large)});
+                    }
+                  }
+
               .post-date
                 %span <b class="day-count">#{diff_in_days(po.date)}</b> days.
                 %span.muted #{time_str(po.date)}
@@ -55,6 +65,10 @@
   $('.dot').tooltip({
     position: 'right'
   });
+
+  $('.left .img').each(function() {
+    $(this).height($(this).width());
+  })
 
   scrollSpy();
         
