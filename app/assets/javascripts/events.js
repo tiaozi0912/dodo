@@ -71,27 +71,6 @@
     })
   }
 
-  //exist people will be dynamically changed when calling ajax to add people
-  $.addPeopleToEvent = function(existNames,event_id){
-    $('body').on('mouseout','#event_group_tagsinput',function(){
-      var names = $('#event_group_tagsinput .tag span').getNames();
-      //console.log(names);
-      var newNames = getNewNames(existNames,names);
-      //console.log(newNames);
-      //ajax call if newNames is not empty
-      if(newNames.length > 0 && newNames[0] != ''){
-        newNames.forEach(function(v,i){
-          existNames.push(v);
-        })
-        var url = '/users';
-        var data = {'event_id':event_id,'user_names':newNames};
-        $.post(url,data,function(response){
-          //console.log(response['usernames']);
-        },"json");
-      }
-    })
-  }
-
   $.fn.getNames = function(){
     var names = [];
     this.each(function(){

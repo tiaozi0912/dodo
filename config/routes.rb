@@ -1,6 +1,11 @@
 Dodo::Application.routes.draw do
   resources :events, :only => [:create,:update]
-  resources :users, :only => :create
+  resources :users do
+    collection do 
+      post 'delete'
+    end 
+  end
+  
   resources :posts
   resources :sessions, :only => [:create]
  

@@ -20,10 +20,24 @@
     $('#event_group').tagsInput({
       'defaultText':'add a person',
       'width':'auto',
-      'height':'30px'
+      'height':'30px',
+      'onAddTag': function(value) {
+        group.push(value);
+        var url = '/users',
+            data = {'event_id':event_id,'username':value};
+        $.post(url,data,function(response){
+          //console.log(response);
+        },"json");
+      },
+      'onRemoveTag': function(value) {
+        group = _.reject(group, function(tag) {
+          return tag === value;
+        });
+        var url = '/users/delete' 
+            data = {'event_id':event_id,'username':value};
+        $.post(url, data);
+      }
     });
-
-    $.addPeopleToEvent(group,event_id);
 
     //specify the people for the expense
     $('body').on('click','td span.participant',function(){
